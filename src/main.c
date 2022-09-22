@@ -43,6 +43,8 @@ int main(int argc, char** argv) {
        
         strcpy(buf2[i], buf);
     }
+    fclose(program);
+    free(buf);
 
     for (int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);
