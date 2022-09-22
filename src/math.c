@@ -5,7 +5,7 @@ double mathModulo(double num1, double num2) {
 double mathPower(double num1, double num2) {
     double result = 1;
 
-    for (size_t i = 0; i < num2; i++) {
+    for(int i = 0; i < num2; i++) {
         result *= num1;
     }
 
