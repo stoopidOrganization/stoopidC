@@ -64,8 +64,6 @@ int main(int argc, char** argv) {
     }
     fclose(program);
 
-    // printf("%f\n", solveSimpleEquasion(3, '^', 3));
-
     for (int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);
 
