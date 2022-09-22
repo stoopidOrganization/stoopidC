@@ -1,5 +1,3 @@
-#include <stdio.h>
-
 double mathModulo(double num1, double num2) {
     return (num1 - (num2 * (int)(num1 / num2)));
 }
