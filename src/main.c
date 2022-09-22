@@ -13,7 +13,8 @@ int main(int argc, char** argv) {
     if(filename == NULL) {
         filename = "test.stpd";
     }
-
+    
+    // get the system arguments
     bool silent = false;
     bool log = false;
     char* logname = "";
@@ -28,6 +29,7 @@ int main(int argc, char** argv) {
         }
     }
 
+    //  open the logfile to write the output to
     FILE* logf;
     logf = fopen(logname,"w");
 
@@ -57,14 +59,15 @@ int main(int argc, char** argv) {
     fclose(program);
     program = fopen(filename, "r");
     
-    for (int i = 0; i < size; i++) {  
+    for(int i = 0; i < size; i++) {  
         fgets(buf, lineLimit, program);
        
         strcpy(buf2[i], buf);
     }
+    
     fclose(program);
 
-    for (int i = 0; i < size; i++) {
+    for(int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);
 
         if(!strcmp(currentKeyword, "var")) {
