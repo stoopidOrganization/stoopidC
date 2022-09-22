@@ -26,5 +26,5 @@ char* getVal(char* name) {
         }
     }
 
-    return "ni";
+    return name;
 }
