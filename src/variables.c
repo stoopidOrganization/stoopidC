@@ -14,6 +14,13 @@ int currentVar = 0;
 Variable variables[MAX_SIZE];
 
 void newVar(char* name, char* value) {
+    for(int i = 0; i < currentVar; i++) {
+        if(!strcmp(variables[i].name, name)) {
+            variables[i].value = value;
+            return;
+        }
+    }
+
     variables[currentVar].name = name;
     variables[currentVar].value = value;
     currentVar += 1;
