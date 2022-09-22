@@ -4,9 +4,10 @@
 #include "lib.h"
 #include "global.h"
 #include "variables.h"
+#include "math.h"
 
 int main(int argc, char** argv) {
-    //get the filename from the args
+    // get the filename from the args
     char* filename = argv[1];
     if (filename == NULL) {
         filename = "test.stpd";
@@ -44,7 +45,8 @@ int main(int argc, char** argv) {
         strcpy(buf2[i], buf);
     }
     fclose(program);
-    free(buf);
+
+    printf("%f\n", solveSimpleEquasion(3, '^', 3));
 
     for (int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);

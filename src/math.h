@@ -1,0 +1,1 @@
+double solveSimpleEquasion(double num1, char operator ,double num2);
