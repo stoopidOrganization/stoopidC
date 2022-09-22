@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include "lib.h"
 #include "global.h"
 #include "variables.h"
@@ -9,24 +10,27 @@
 int main(int argc, char** argv) {
     // get the filename from the args
     char* filename = argv[1];
-    if (filename == NULL) {
+    if(filename == NULL) {
         filename = "test.stpd";
     }
-    int silent=0;
-    int log=0;
+
+    bool silent = false;
+    bool log = false;
     char* logname = "";
-    for (size_t i = 0; i < argc; i++)
-    {
-        if (strcmp(argv[i],"--silent") == 0) {
-           silent=1;
+    for (size_t i = 0; i < argc; i++) {
+        if(!strcmp(argv[i], "--silent")) {
+           silent = true;
         }
-        if (strcmp(argv[i],"--log") == 0) {
-           log=1;
+
+        if(!strcmp(argv[i], "--log")) {
+           log = true;
            logname = argv[i+1];
         }
     }
+
     FILE* logf;
-    logf=fopen(logname,"w");
+    logf = fopen(logname,"w");
+
     // open the file
     FILE* program;
     program = fopen(filename, "r");
@@ -60,7 +64,7 @@ int main(int argc, char** argv) {
     }
     fclose(program);
 
-    printf("%f\n", solveSimpleEquasion(3, '^', 3));
+    // printf("%f\n", solveSimpleEquasion(3, '^', 3));
 
     for (int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);
@@ -68,10 +72,10 @@ int main(int argc, char** argv) {
         if(!strcmp(currentKeyword, "var")) {
             newVar(split(split(buf2[i], ':', 1), '=', 0), split(split(buf2[i], ':', 1), '=', 1));
         } else if(!strcmp(currentKeyword, "out")) {
-            if (log==1) {
+            if(log) {
                 fprintf(logf, "%s\n", getVal(split(buf2[i], ':', 1)));
             }
-            if (silent==0) {
+            if(!silent) {
                 printf("%s\n", getVal(split(buf2[i], ':', 1)));
             }
             
@@ -80,4 +84,7 @@ int main(int argc, char** argv) {
             return 1;
         }
     }
+
+    fclose(logf);
+    return 0;
 }
