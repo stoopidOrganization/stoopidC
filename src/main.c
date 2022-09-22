@@ -12,7 +12,21 @@ int main(int argc, char** argv) {
     if (filename == NULL) {
         filename = "test.stpd";
     }
-
+    int silent=0;
+    int log=0;
+    char* logname = "";
+    for (size_t i = 0; i < argc; i++)
+    {
+        if (strcmp(argv[i],"--silent") == 0) {
+           silent=1;
+        }
+        if (strcmp(argv[i],"--log") == 0) {
+           log=1;
+           logname = argv[i+1];
+        }
+    }
+    FILE* logf;
+    logf=fopen(logname,"w");
     // open the file
     FILE* program;
     program = fopen(filename, "r");
@@ -54,7 +68,13 @@ int main(int argc, char** argv) {
         if(!strcmp(currentKeyword, "var")) {
             newVar(split(split(buf2[i], ':', 1), '=', 0), split(split(buf2[i], ':', 1), '=', 1));
         } else if(!strcmp(currentKeyword, "out")) {
-            printf("%s\n", getVal((split(buf2[i], ':', 1))));
+            if (log==1) {
+                fprintf(logf, "%s\n", getVal(split(buf2[i], ':', 1)));
+            }
+            if (silent==0) {
+                printf("%s\n", getVal(split(buf2[i], ':', 1)));
+            }
+            
         } else if(!startsWith(buf2[i], "#") && strcmp(currentKeyword, " ") > 0) {
             printf("Keyword %s not Found\n", currentKeyword);
             return 1;
