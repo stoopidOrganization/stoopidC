@@ -3,6 +3,8 @@
 #include <string.h>
 #include "lib.h"
 #include "global.h"
+#include "math.h"
+#include <stdbool.h>
 
 int startsWith(char* str, char* pre) {
     size_t lenpre = strlen(pre),
@@ -97,6 +99,21 @@ double strToDouble(char* value) {
     }
 
     for (int i = start; i < getSize(value) && value[i] != '\0'; i++) {
+        if(value[i] == '.') {
+            i++;
+            int j = 1;
+            while(i < getSize(value)) {
+                if(op == '-') {
+                    newValue = newValue - ((double)charToInt(value[i]) / mathPower(10, j));
+                } else {
+                    newValue = newValue + ((double)charToInt(value[i]) / mathPower(10, j));
+                }
+                i++;
+                j++;
+            }
+            break;
+        }
+
         if(newValue == 0) {
             if(op == '-') {
                 newValue = -(double)charToInt(value[i]);

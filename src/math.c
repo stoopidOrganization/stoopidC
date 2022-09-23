@@ -5,7 +5,7 @@ double mathModulo(double num1, double num2) {
     return (num1 - (num2 * (int)(num1 / num2)));
 }
 
-double mathPower(double num1, double num2) {
+double mathPower(double num1, int num2) {
     double result = 1;
 
     for(int i = 0; i < num2; i++) {
