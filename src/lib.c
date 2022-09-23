@@ -85,12 +85,30 @@ int charToInt(char value) {
 
 double strToDouble(char* value) {
     double newValue = 0;
+    char op = value[0];
+    int start;
 
-    for (int i = 0; i < getSize(value) && value[i] != '\0'; i++) {
+    if(value[0] == '-') {
+        op = '-';
+        start = 1;
+    } else {
+        op = '+';
+        start = 0;
+    }
+
+    for (int i = start; i < getSize(value) && value[i] != '\0'; i++) {
         if(newValue == 0) {
-            newValue = (double)charToInt(value[i]);
+            if(op == '-') {
+                newValue = -(double)charToInt(value[i]);
+            } else {
+                newValue = (double)charToInt(value[i]);
+            }
         } else {
-            newValue = (newValue * 10) + (double)charToInt(value[i]);
+            if(op == '-') {
+                newValue = (newValue * 10) - (double)charToInt(value[i]);
+            } else {
+                newValue = (newValue * 10) + (double)charToInt(value[i]);
+            }
         }
     }
 
