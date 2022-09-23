@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
     
     for(int i = 0; i < size; i++) {  
         fgets(buf, lineLimit, program);
-       
+        
         strcpy(buf2[i], buf);
     }
     
