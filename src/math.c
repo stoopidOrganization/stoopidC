@@ -1,3 +1,6 @@
+#include <stdbool.h>
+#include "lib.h"
+
 double mathModulo(double num1, double num2) {
     return (num1 - (num2 * (int)(num1 / num2)));
 }
@@ -25,6 +28,16 @@ double solveSimpleEquasion(double num1, char operator ,double num2) {
         return mathModulo(num1, num2);
     } else if(operator == '^') {
         return mathPower(num1, num2);
+    }
+
+    return 0;
+}
+
+double solveComplexEquasion(char* equasion) {
+    for (int i = 0; i < getSize(equasion); i++) {
+        if(equasion[i] == '(') {
+            break;
+        }
     }
 
     return 0;

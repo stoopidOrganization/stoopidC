@@ -56,3 +56,43 @@ char* split(char* str, char splitter, int index) {
 
     return str;
 }
+
+int charToInt(char value) {
+    if(value == '0') {
+        return 0;
+    } else if(value == '1') {
+        return 1;
+    } else if(value == '2') {
+        return 2;
+    } else if(value == '3') {
+        return 3;
+    } else if(value == '4') {
+        return 4;
+    } else if(value == '5') {
+        return 5;
+    } else if(value == '6') {
+        return 6;
+    } else if(value == '7') {
+        return 7;
+    } else if(value == '8') {
+        return 8;
+    } else if(value == '9') {
+        return 9;
+    }
+
+    return -1;
+}
+
+double strToDouble(char* value) {
+    double newValue = 0;
+
+    for (int i = 0; i < getSize(value) && value[i] != '\0'; i++) {
+        if(newValue == 0) {
+            newValue = (double)charToInt(value[i]);
+        } else {
+            newValue = (newValue * 10) + (double)charToInt(value[i]);
+        }
+    }
+
+    return newValue;
+}
