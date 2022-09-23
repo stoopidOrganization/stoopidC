@@ -52,3 +52,5 @@ dkms.conf
 .vscode
 log.txt
 *.log
+__pycache__
+*.spec
