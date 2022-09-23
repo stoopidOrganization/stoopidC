@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 #include "lib.h"
 #include "global.h"
 #include "math.h"
@@ -104,9 +105,9 @@ double strToDouble(char* value) {
             int j = 1;
             while(i < getSize(value)) {
                 if(op == '-') {
-                    newValue = newValue - ((double)charToInt(value[i]) / mathPower(10, j));
+                    newValue = newValue - ((double)charToInt(value[i]) / pow(10, j));
                 } else {
-                    newValue = newValue + ((double)charToInt(value[i]) / mathPower(10, j));
+                    newValue = newValue + ((double)charToInt(value[i]) / pow(10, j));
                 }
                 i++;
                 j++;

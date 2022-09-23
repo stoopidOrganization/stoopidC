@@ -67,6 +67,7 @@ int main(int argc, char** argv) {
     
     fclose(program);
 
+    printf("%f\n", mathModulo(8, 5));
     solveComplexEquasion("3^3");
 
     for(int i = 0; i < size; i++) {
