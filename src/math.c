@@ -59,7 +59,7 @@ double solveComplexEquasion(char* equasion) {
                 }
             }
             
-            char* num1AsStr = malloc(numLimit);
+            char* num1AsStr = malloc(numLimit * sizeof(char));
             int k = 0;
             for(int j = num1Start; j < i; j++) {
                 num1AsStr[k] = equasion[j];
@@ -71,7 +71,7 @@ double solveComplexEquasion(char* equasion) {
             free(num1AsStr);
 
             // get second number
-            char* num2AsStr = malloc(numLimit);
+            char* num2AsStr = malloc(numLimit * sizeof(char));
             k = 0;
             for(int j = i + 1; j < getSize(equasion); j++) {
                 if(isOperator(equasion[j])) {
