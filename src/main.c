@@ -67,10 +67,7 @@ int main(int argc, char** argv) {
     
     fclose(program);
 
-    printf("%f\n", strToDouble("88"));
-    printf("%f\n", strToDouble("-88"));
-    printf("%f\n", strToDouble("88.33"));
-    printf("%f\n", strToDouble("-88.33"));
+    solveComplexEquasion("3^3");
 
     for(int i = 0; i < size; i++) {
         char* currentKeyword = split(buf2[i], ':', 0);
