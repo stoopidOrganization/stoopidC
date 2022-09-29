@@ -132,3 +132,28 @@ double strToDouble(char* value) {
 
     return newValue;
 }
+
+char* replaceString(char* string, char* replace, int start, int end) {
+    int size = getSize(string) + getSize(replace) + 1;
+    char* result = malloc(size);
+
+    int j = 0;
+    int k = 0;
+
+    for(int i = 0; i < size; i++) {
+        if(i == start) {
+            while(j < getSize(replace)) {
+                result[i + j] = replace[j];
+                j++;
+            }
+
+            i++;
+            k = end;
+        }
+
+        result[i + j] = string[k];
+        k++;
+    }
+
+    return result;
+}

@@ -11,4 +11,6 @@ int charToInt(char value);
 
 double strToDouble(char* value);
 
+char* replaceString(char* string, char* replace, int start, int end);
+
 #endif

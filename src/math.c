@@ -62,10 +62,12 @@ double solveComplexEquasion(char* equasion) {
             free(num1AsStr);
 
             // get second number
+            int end;
             char* num2AsStr = malloc(numLimit * sizeof(char));
             k = 0;
             for(int j = i + 1; j < getSize(equasion); j++) {
                 if(isOperator(equasion[j])) {
+                    end = j;
                     break;
                 }
 
@@ -77,9 +79,12 @@ double solveComplexEquasion(char* equasion) {
 
             free(num2AsStr);
 
-            double result = solveSimpleEquasion(num1, '^', num2);
+            char* result = malloc(numLimit);
+            sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
 
-            printf("%f\n", result);
+            result[getSize(result) - 1] = '\0';
+
+            printf("%s\n", replaceString(finishedEquasion, result, 0, end));
         }
     }
 
