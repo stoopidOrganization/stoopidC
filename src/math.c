@@ -82,9 +82,11 @@ double solveComplexEquasion(char* equasion) {
             char* result = malloc(numLimit);
             sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
 
-            result[getSize(result) - 1] = '\0';
+            printf("result: %s\n", result);
 
             printf("%s\n", replaceString(finishedEquasion, result, 0, end));
+
+            free(result);
         }
     }
 

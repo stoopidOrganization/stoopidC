@@ -147,7 +147,6 @@ char* replaceString(char* string, char* replace, int start, int end) {
                 j++;
             }
 
-            i++;
             k = end;
         }
 
