@@ -35,7 +35,7 @@ double solveSimpleEquasion(double num1, char operator ,double num2) {
     return 0;
 }
 
-double solveComplexEquasion(char* equasion) {
+char* solveComplexEquasion(char* equasion) {
     char* finishedEquasion = equasion;
     int numLimit = 1024;
 
@@ -44,8 +44,8 @@ double solveComplexEquasion(char* equasion) {
         if(finishedEquasion[i] == '^') {
             // get first number
             int num1Start = 0;
-            for(int j = i - 1; j >= 0; j--) {
-                if(isOperator(equasion[j])) {
+            for(int j = i - 1; j >= -1; j--) {
+                if(isOperator(finishedEquasion[j])) {
                     num1Start = j + 1;
                 }
             }
@@ -53,9 +53,10 @@ double solveComplexEquasion(char* equasion) {
             char* num1AsStr = malloc(numLimit * sizeof(char));
             int k = 0;
             for(int j = num1Start; j < i; j++) {
-                num1AsStr[k] = equasion[j];
+                num1AsStr[k] = finishedEquasion[j];
+                k++;
             }
-            num1AsStr[k + 1] = '\0';
+            num1AsStr[k] = '\0';
 
             double num1 = strToDouble(num1AsStr);
 
@@ -65,13 +66,13 @@ double solveComplexEquasion(char* equasion) {
             int end;
             char* num2AsStr = malloc(numLimit * sizeof(char));
             k = 0;
-            for(int j = i + 1; j < getSize(equasion); j++) {
-                if(isOperator(equasion[j])) {
+            for(int j = i + 1; j < getSize(finishedEquasion); j++) {
+                if(isOperator(finishedEquasion[j])) {
                     end = j;
                     break;
                 }
 
-                num2AsStr[k] = equasion[j];
+                num2AsStr[k] = finishedEquasion[j];
             }
             num2AsStr[k + 1] = '\0';
             
@@ -81,12 +82,11 @@ double solveComplexEquasion(char* equasion) {
 
             char* result = malloc(numLimit);
             sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
-
-            printf("%s\n", replaceString(finishedEquasion, result, 0, end));
-
-            free(result);
+            
+            finishedEquasion = replaceString(finishedEquasion, result, 0, end);
+            return solveComplexEquasion(finishedEquasion);
         }
     }
 
-    return 0.0;
+    return finishedEquasion;
 }
