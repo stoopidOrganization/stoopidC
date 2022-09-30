@@ -2,7 +2,7 @@ import sys,os
 import tkinter as tk
 import tkinter.filedialog as tkfd
 import tkinter.messagebox as tkmb
-import shutil
+import subprocess
 installAccept=0
 
 #Before you ask, yes, this installer is very hacky, and yes, I know it's not the best way to do it,
@@ -30,7 +30,10 @@ root.title("StoopidC Installer")
 try:
     root.iconbitmap(resource_path("icon.ico"))#I think it might work now? idk
 except:
-    pass
+    try:
+        root.iconbitmap("icon.ico")
+    except:
+        pass
 #set the size
 root.geometry("480x360")
 #make it not resizable
@@ -139,7 +142,10 @@ if installAccept:
     #install the requirements
     
     for file in files:
-        os.system("copy %s %s" % (file,installdir))
+        try:
+            subprocess.call(["copy",file,installdir])
+        except:
+            pass
     #add the path to the environment variables
     user=os.getenv("USERNAME")
     #get the path for the current user
@@ -152,10 +158,8 @@ if installAccept:
     print(pathAdd)
     if (not installdir in cpath) and pathAdd:
         cpath+=";%s" % installdir
-        #print(cpath)
-        command="setx PATH \"%s\"" % cpath
-        print(command)
-        os.system(command)
+
+        subprocess.call(["setx","PATH",cpath])
         print("Added %s to PATH" % installdir)
         print("You can now run stoopid by typing stoopid in your terminal")
     else:
