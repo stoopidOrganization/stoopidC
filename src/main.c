@@ -67,11 +67,15 @@ int main(int argc, char** argv) {
     
     fclose(program);
 
+    // debug code to test math code
     printf("%s\n", solveComplexEquasion("3^3^3"));
 
+    // analyze the line
     for(int i = 0; i < size; i++) {
+        // get the first part of the line
         char* currentKeyword = split(buf2[i], ':', 0);
 
+        // 
         if(!strcmp(currentKeyword, "var")) {
             newVar(split(split(buf2[i], ':', 1), '=', 0), split(split(buf2[i], ':', 1), '=', 1));
         } else if(!strcmp(currentKeyword, "out")) {

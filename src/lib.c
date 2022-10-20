@@ -148,6 +148,10 @@ char* replaceString(char* string, char* replace, int start, int end) {
             }
 
             k = end;
+            if(end >= getSize(string)) {
+                result[i + j] = '\0';
+                break;
+            }
         }
 
         result[i + j] = string[k];

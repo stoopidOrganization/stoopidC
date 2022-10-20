@@ -49,7 +49,6 @@ char* solveComplexEquasion(char* equasion) {
                     num1Start = j + 1;
                 }
             }
-            
             char* num1AsStr = malloc(numLimit * sizeof(char));
             int k = 0;
             for(int j = num1Start; j < i; j++) {
@@ -67,7 +66,7 @@ char* solveComplexEquasion(char* equasion) {
             char* num2AsStr = malloc(numLimit * sizeof(char));
             k = 0;
             for(int j = i + 1; j < getSize(finishedEquasion); j++) {
-                if(isOperator(finishedEquasion[j])) {
+                if(isOperator(finishedEquasion[j]) || finishedEquasion[j] == '\0') {
                     end = j;
                     break;
                 }
@@ -83,7 +82,8 @@ char* solveComplexEquasion(char* equasion) {
             char* result = malloc(numLimit);
             sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
             
-            finishedEquasion = replaceString(finishedEquasion, result, 0, end);
+            finishedEquasion = replaceString(equasion, result, 0, end);
+
             return solveComplexEquasion(finishedEquasion);
         }
     }
