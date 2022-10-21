@@ -41,7 +41,7 @@ char* solveComplexEquasion(char* equasion) {
 
     // resolve stage 1 operation
     for(int i = 0; i < getSize(equasion); i++) {
-        if(finishedEquasion[i] == '^') {
+        if(isOperator(finishedEquasion[i])) {
             // get first number
             int num1Start = 0;
             for(int j = i - 1; j >= -1; j--) {
@@ -80,7 +80,10 @@ char* solveComplexEquasion(char* equasion) {
             free(num2AsStr);
 
             char* result = malloc(numLimit);
-            sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
+            
+            if(finishedEquasion[i] == '^') {
+                sprintf(result, "%f", solveSimpleEquasion(num1, '^', num2));
+            }
             
             finishedEquasion = replaceString(equasion, result, 0, end);
 
