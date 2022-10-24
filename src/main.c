@@ -68,7 +68,7 @@ int main(int argc, char** argv) {
     fclose(program);
 
     // debug code to test math code
-    printf("%s\n", solveComplexEquasion("3^3^3"));
+    printf("%s\n", solveComplexEquasion("3+3^3^3"));
 
     // analyze the line
     for(int i = 0; i < size; i++) {
