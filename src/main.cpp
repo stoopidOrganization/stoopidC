@@ -1,18 +1,8 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
-
-std::string removeSpace(std::string input) {
-    std::string output = "";
-
-    for (size_t i = 0; i < input.length(); i++) {
-        if (input[i] != ' ') {
-            output += input[i];
-        }
-    }
-
-    return output;
-}
+#include <string>
+#include "utils.hpp"
 
 int main() {
     // load file
