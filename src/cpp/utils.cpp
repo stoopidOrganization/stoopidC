@@ -41,8 +41,6 @@ std::string getValue(std::string input) {
     try {
         return std::to_string(solveEquasion(input));
     } catch (int e) {
-        std::cout << "thrown" << std::endl;
-
         if (isVariable(input)) {
             return getVariable(input).value;
         }

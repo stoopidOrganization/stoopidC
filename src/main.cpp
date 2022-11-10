@@ -27,7 +27,7 @@ int main() {
 
             Variable newVar;
             newVar.name = varPieces[0];
-            newVar.value = varPieces[1];
+            newVar.value = getValue(varPieces[1]);
 
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
