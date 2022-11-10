@@ -3,9 +3,21 @@
 #include <vector>
 #include <iostream>
 #include "../c/cMath.h"
+#include "variableManager.hpp"
+
+int isNumber(std::string num) {
+    for (size_t i = 0; i < num.size(); i++) {
+        if (!isCharNum(num[i])) {
+            return 0;
+        }
+    }
+
+    return 1;
+}
 
 std::vector<std::string> splitEquasion(std::string equasion) {
     std::string cache = "";
+    std::string opBuffer = "";
     std::vector<std::string> equasionAsList;
 
     for (size_t i = 0; i < equasion.size(); i++) {
@@ -18,7 +30,39 @@ std::vector<std::string> splitEquasion(std::string equasion) {
                 cache += equasion[i];
                 continue;
             }
+
+            // if the cache isnt empty and an operator is found, add it to the result
+            if (cache != "") {
+                if (isVariable(cache)) {
+                    equasionAsList.push_back(getVariable(cache).value);
+                    cache = "";
+                } else if (isNumber(cache)) {
+                    equasionAsList.push_back(cache);
+                    cache = "";
+                }
+            }
+
+            // add operators and brackets to the list
+            if (isOperator(equasion[i])) {
+                opBuffer += equasion[i];
+                equasionAsList.push_back(opBuffer);
+                opBuffer = "";
+            } else if (equasion[i] == '(') {
+                equasionAsList.push_back("(");
+            } else if (equasion[i] == ')') {
+                equasionAsList.push_back(")");
+            }
+        } else {
+            cache += equasion[i];
         }
+    }
+
+    if (isVariable(cache)) {
+        equasionAsList.push_back(getVariable(cache).value);
+        cache = "";
+    } else if (isNumber(cache)) {
+        equasionAsList.push_back(cache);
+        cache = "";
     }
 
     return equasionAsList;

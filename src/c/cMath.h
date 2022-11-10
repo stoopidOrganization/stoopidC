@@ -1,3 +1,3 @@
-#include <stdbool.h>
+int isOperator(char op);
 
-bool isOperator(char op);
+int isCharNum(char num);

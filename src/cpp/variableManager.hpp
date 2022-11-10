@@ -7,3 +7,5 @@ std::vector<Variable> getVariables();
 int addVariable(Variable var);
 
 Variable getVariable(std::string name);
+
+int isVariable(std::string name);

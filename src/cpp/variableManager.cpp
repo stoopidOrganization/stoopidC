@@ -32,3 +32,13 @@ Variable getVariable(std::string name) {
 
     return dummy;
 }
+
+int isVariable(std::string name) {
+    for (size_t i = 0; i < variables.size(); i++) {
+        if (name == variables[i].name) {
+            return 1;
+        }
+    }
+
+    return 0;
+}
