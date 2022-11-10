@@ -1,8 +1,8 @@
-CC = gcc
-rm = del
+CC = g++
+rm = rm
 
 compile:
-	${CC} -Wall -c ./src/*.c
+	${CC} -Wall -c ./src/*.cpp
 
 exe:
 	${CC} -o ./build/stoopid *.o
