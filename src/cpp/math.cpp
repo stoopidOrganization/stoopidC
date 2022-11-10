@@ -126,9 +126,7 @@ std::queue<std::string> convertToRPN(std::vector<std::string> equasion) {
 }
 
 double solveEquasion(std::string equasion) {
-    std::vector<std::string> splitUp = splitEquasion(equasion);
-
-    std::queue<std::string> equasionInRPN = convertToRPN(splitUp);
+    std::queue<std::string> equasionInRPN = convertToRPN(splitEquasion(equasion));
 
     std::queue<std::string> out = equasionInRPN;
 
