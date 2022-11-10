@@ -13,14 +13,14 @@ int main() {
     std::string cache;
 
     while (getline (Script, cache)) {
-        lines.push_back(cache);
+        lines.push_back(removeSpace(cache));
     }
 
     Script.close();
 
     // output file
     for (size_t i = 0; i < lines.size(); i++) {
-        std::cout << removeSpace(lines[i]) << std::endl;
+        std::cout << lines[i] << std::endl;
     }
 
     return 0;
