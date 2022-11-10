@@ -36,12 +36,10 @@ std::vector<std::string> splitString(std::string input, char splitter) {
 }
 
 std::string getValue(std::string input) {
-    for (size_t i = 0; i < getVariables().size(); i++) {
-        Variable current = getVariables()[i];
+    Variable var = getVariable(input);
 
-        if (input == current.name) {
-            return current.value;
-        }
+    if (var.name != "NULL" && var.value != "NULL") {
+        return var.value;
     }
 
     return input;
