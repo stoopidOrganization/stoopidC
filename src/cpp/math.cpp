@@ -9,8 +9,15 @@ std::vector<std::string> splitEquasion(std::string equasion) {
     std::vector<std::string> equasionAsList;
 
     for (size_t i = 0; i < equasion.size(); i++) {
-        if (isOperator(equasion[i])) {
-            
+        // if operator is actually part of a negative number then add it to the cache
+        if (isOperator(equasion[i]) || equasion[i] == '(' || equasion[i] == ')') {
+            if (i == 0) {
+                cache += equasion[i];
+                continue;
+            } else if (isOperator(equasion[i - 1])) {
+                cache += equasion[i];
+                continue;
+            }
         }
     }
 
