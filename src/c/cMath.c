@@ -13,3 +13,21 @@ int isCharNum(char num) {
 
     return 0;
 }
+
+int calcOperatorScore(char op) {
+    if (op == '+') {
+        return 0;
+    } else if (op == '-') {
+        return 1;
+    } else if (op == '*') {
+        return 2;
+    } else if (op == '/') {
+        return 3;
+    } else if (op == '%') {
+        return 4;
+    } else if (op == '^') {
+        return 5;
+    }
+
+    return -1;
+}

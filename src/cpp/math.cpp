@@ -2,6 +2,8 @@
 #include <queue>
 #include <vector>
 #include <iostream>
+#include <stack>
+
 #include "../c/cMath.h"
 #include "variableManager.hpp"
 
@@ -69,18 +71,71 @@ std::vector<std::string> splitEquasion(std::string equasion) {
 }
 
 std::queue<std::string> convertToRPN(std::vector<std::string> equasion) {
-    std::queue<std::string> output;
+    std::queue<std::string> equasionInRPN;
 
-    return output;
+    std::vector<std::stack<std::string>> operators;
+    std::stack<std::string> helpStack;
+    operators.push_back(helpStack);
+
+    int currentStack = 0;
+
+    for (size_t i = 0; i < equasion.size(); i++) {
+        std::string current = equasion[i];
+
+        if (isNumber(current)) {
+            equasionInRPN.push(current);
+        } else if (isOperator(current[0]) && operators[currentStack].empty()) {
+            operators[currentStack].push(current);
+        } else if (isOperator(current[0] && calcOperatorScore(current[0]) >= calcOperatorScore(operators[currentStack].top()[0]))) {
+            operators[currentStack].push(current);
+        } else if (current[0] == '(') {
+            currentStack++;
+            operators.push_back(helpStack);
+        } else if (current[0] == ')') {
+            while (operators[currentStack].empty()) {
+                equasionInRPN.push(operators[currentStack].top());
+                operators[currentStack].pop();
+            }
+
+            currentStack--;
+        } else {
+            while (operators[currentStack].empty()) {
+                if (calcOperatorScore(current[0]) < calcOperatorScore(operators[currentStack].top()[0])) {
+                    equasionInRPN.push(operators[currentStack].top());
+                    operators[currentStack].pop();
+                } else {
+                    break;
+                }
+            }
+
+            operators[currentStack].push(current);
+        }
+    }
+
+    while (currentStack >= 0) {
+        while (!operators[currentStack].empty()) {
+            equasionInRPN.push(operators[currentStack].top());
+
+            operators[currentStack].pop();
+        }
+
+        currentStack--;
+    }
+
+    return equasionInRPN;
 }
 
 double solveEquasion(std::string equasion) {
-    // std::queue<std::string> equasionInRPN = convertToRPN(splitEquasion(equasion));
-
     std::vector<std::string> splitUp = splitEquasion(equasion);
 
-    for (size_t i = 0; i < splitUp.size(); i++) {
-        std::string current = splitUp[i];
+    std::queue<std::string> equasionInRPN = convertToRPN(splitUp);
+
+    std::queue<std::string> out = equasionInRPN;
+
+    while (!out.empty()) {
+        std::string current = out.front();
+
+        out.pop();
 
         std::cout << current << std::endl;
     }
