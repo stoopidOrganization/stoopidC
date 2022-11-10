@@ -18,8 +18,6 @@ int main() {
 
     Script.close();
 
-    std::vector<Variable> variables;
-
     // output file
     for (size_t i = 0; i < lines.size(); i++) {
         std::vector<std::string> linepieces = splitString(lines[i], ':');
@@ -31,9 +29,9 @@ int main() {
             newVar.name = varPieces[0];
             newVar.value = varPieces[1];
 
-            variables.push_back(newVar);
+            addVariable(newVar);
         } else if (linepieces[0] == "out") {
-            std::cout << getValue(linepieces[1], variables) << std::endl;
+            std::cout << getValue(linepieces[1]) << std::endl;
         }
     }
 
