@@ -3,7 +3,7 @@
 #include <vector>
 
 double solveEquasion(std::string equasion) {
-    std::queue<std::string> equasionInRPN = convertToRPN(splitEquasion(equasion));
+    // std::queue<std::string> equasionInRPN = convertToRPN(splitEquasion(equasion));
 
     return 0.1;
 }
