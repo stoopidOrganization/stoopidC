@@ -1,3 +1,5 @@
+#include <math.h>
+
 int isOperator(char op) {
     if (op == '+' || op == '-' || op == '*' || op == '/' || op == '%' || op == '^') {
         return 1;
@@ -27,6 +29,24 @@ int calcOperatorScore(char op) {
         return 4;
     } else if (op == '^') {
         return 5;
+    }
+
+    return -1;
+}
+
+double solveSimpleEquasion(double num1, char op, double num2) {
+    if (op == '+') {
+        return num1 + num2;
+    } else if (op == '-') {
+        return num1 - num2;
+    } else if (op == '*') {
+        return num1 * num2;
+    } else if (op == '/') {
+        return num1 / num2;
+    } else if (op == '%') {
+        return fmod(num1, num2);
+    } else if (op == '^') {
+        return pow(num1, num2);
     }
 
     return -1;
