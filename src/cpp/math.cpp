@@ -2,13 +2,19 @@
 #include <queue>
 #include <vector>
 #include <iostream>
+#include "../c/cMath.h"
 
 std::vector<std::string> splitEquasion(std::string equasion) {
-    std::vector<std::string> output;
+    std::string cache = "";
+    std::vector<std::string> equasionAsList;
 
-    output.push_back("test");
+    for (size_t i = 0; i < equasion.size(); i++) {
+        if (isOperator(equasion[i])) {
+            
+        }
+    }
 
-    return output;
+    return equasionAsList;
 }
 
 std::queue<std::string> convertToRPN(std::vector<std::string> equasion) {
