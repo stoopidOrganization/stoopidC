@@ -127,16 +127,25 @@ std::queue<std::string> convertToRPN(std::vector<std::string> equasion) {
 
 double solveEquasion(std::string equasion) {
     std::queue<std::string> equasionInRPN = convertToRPN(splitEquasion(equasion));
+    std::stack<std::string> storage;
 
-    std::queue<std::string> out = equasionInRPN;
+    while (!equasionInRPN.empty()) {
+        std::string current = equasionInRPN.front();
+        equasionInRPN.pop();
 
-    while (!out.empty()) {
-        std::string current = out.front();
+        if (isOperator(current[0])) {
+            std::string num2Str = storage.top();
+            double num2 = std::stod(num2Str);
+            storage.pop();
+            std::string num1Str = storage.top();
+            double num1 = std::stod(num1Str);
+            storage.pop();
 
-        out.pop();
-
-        std::cout << current << std::endl;
+            storage.push(std::to_string(solveSimpleEquasion(num1, current[0], num2)));
+        } else {
+            storage.push(current);
+        }
     }
 
-    return 0.1;
+    return std::stod(storage.top());
 }

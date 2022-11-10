@@ -35,7 +35,7 @@ int main() {
         }
     }
 
-    std::cout << solveEquasion("1+1*1") << std::endl;
+    std::cout << solveEquasion("1+1+1") << std::endl;
 
     return 0;
 }
