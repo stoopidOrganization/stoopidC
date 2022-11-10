@@ -1,3 +1,7 @@
 var : a = 90
 
+var : b = hi
+
 out : a
+
+out : b
