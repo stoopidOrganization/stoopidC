@@ -1,6 +1,7 @@
 #include <string>
 #include <vector>
 #include "variable.hpp"
+#include "math.hpp"
 
 std::string removeSpace(std::string input);
 
