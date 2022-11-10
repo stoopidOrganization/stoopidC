@@ -2,6 +2,18 @@
 #include <fstream>
 #include <vector>
 
+std::string removeSpace(std::string input) {
+    std::string output = "";
+
+    for (size_t i = 0; i < input.length(); i++) {
+        if (input[i] != ' ') {
+            output += input[i];
+        }
+    }
+
+    return output;
+}
+
 int main() {
     // load file
     std::ifstream Script("test.stpd");
@@ -18,7 +30,7 @@ int main() {
 
     // output file
     for (size_t i = 0; i < lines.size(); i++) {
-        std::cout << lines[i] << std::endl;
+        std::cout << removeSpace(lines[i]) << std::endl;
     }
 
     return 0;
