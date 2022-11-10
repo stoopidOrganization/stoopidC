@@ -1,3 +1,9 @@
 var : a = 90
+var : b = 10
+var : c = a + b
 
-out : a
+out : c
+
+var : text = hi
+
+out : text

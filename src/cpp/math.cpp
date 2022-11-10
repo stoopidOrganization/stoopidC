@@ -35,12 +35,14 @@ std::vector<std::string> splitEquasion(std::string equasion) {
 
             // if the cache isnt empty and an operator is found, add it to the result
             if (cache != "") {
-                if (isVariable(cache)) {
+                if (isVariable(cache) && isNumber(getVariable(cache).value)) {
                     equasionAsList.push_back(getVariable(cache).value);
                     cache = "";
                 } else if (isNumber(cache)) {
                     equasionAsList.push_back(cache);
                     cache = "";
+                } else {
+                    throw 69;
                 }
             }
 
@@ -59,12 +61,14 @@ std::vector<std::string> splitEquasion(std::string equasion) {
         }
     }
 
-    if (isVariable(cache)) {
+    if (isVariable(cache) && isNumber(getVariable(cache).value)) {
         equasionAsList.push_back(getVariable(cache).value);
         cache = "";
     } else if (isNumber(cache)) {
         equasionAsList.push_back(cache);
         cache = "";
+    } else {
+        throw 69;
     }
 
     return equasionAsList;

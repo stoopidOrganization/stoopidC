@@ -1,6 +1,8 @@
 #include <string>
 #include <vector>
+#include <iostream>
 #include "variableManager.hpp"
+#include "math.hpp"
 
 std::string removeSpace(std::string input) {
     std::string output = "";
@@ -36,11 +38,13 @@ std::vector<std::string> splitString(std::string input, char splitter) {
 }
 
 std::string getValue(std::string input) {
-    Variable var = getVariable(input);
+    try {
+        return std::to_string(solveEquasion(input));
+    } catch (int e) {
+        if (isVariable(input)) {
+            return getVariable(input).value;
+        }
 
-    if (var.name != "NULL" && var.value != "NULL") {
-        return var.value;
+        return input;
     }
-
-    return input;
 }

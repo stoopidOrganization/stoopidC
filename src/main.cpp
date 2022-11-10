@@ -27,15 +27,13 @@ int main() {
 
             Variable newVar;
             newVar.name = varPieces[0];
-            newVar.value = varPieces[1];
+            newVar.value = getValue(varPieces[1]);
 
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
             std::cout << getValue(linepieces[1]) << std::endl;
         }
     }
-
-    std::cout << solveEquasion("1+1+1") << std::endl;
 
     return 0;
 }
