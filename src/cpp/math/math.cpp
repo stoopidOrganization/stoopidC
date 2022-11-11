@@ -4,8 +4,8 @@
 #include <iostream>
 #include <stack>
 
-#include "../c/cMath.h"
-#include "variableManager.hpp"
+#include "../../c/cMath/cMath.h"
+#include "../variables/variableManager.hpp"
 
 int isNumber(std::string num) {
     for (size_t i = 0; i < num.size(); i++) {

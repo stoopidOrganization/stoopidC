@@ -2,8 +2,9 @@
 #include <fstream>
 #include <vector>
 #include <string>
-#include "cpp/utils.hpp"
-#include "cpp/stringHandler.hpp"
+
+#include "cpp/utils/utils.hpp"
+#include "cpp/stringHandler/stringHandler.hpp"
 
 int main() {
     // load file

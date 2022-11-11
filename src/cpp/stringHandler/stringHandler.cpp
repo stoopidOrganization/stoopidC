@@ -1,7 +1,8 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "utils.hpp"
+
+#include "../utils/utils.hpp"
 
 std::string removeQuotation(std::string input) {
     std::string output;
