@@ -66,6 +66,7 @@ std::vector<std::string> splitBool(std::string input) {
 
 std::string solveBool(std::string input) {
     std::vector<std::string> splitUp = splitBool(input);
+    std::vector<std::string> resolved;
 
     for (size_t i = 0; i < splitUp.size(); i++) {
         std::string current = splitUp[i];
@@ -75,19 +76,10 @@ std::string solveBool(std::string input) {
                 double num1 = stod(splitUp[i - 1]);
                 double num2 = stod(splitUp[i + 1]);
 
-                std::cout << solveDoubleBool(num1, current.c_str(), num2) << std::endl;
+                resolved.push_back(std::to_string(solveDoubleBool(num1, current.c_str(), num2)));
             }
-            //     if (current == "<<" || current == ">>" || current == "==" || current == "!=") {
-            //         double num1 = stod(splitUp[i - 1]);
-            //         double num2 = stod(splitUp[i + 1]);
-
-            //         if (num1 < num2) {
-            //             std::cout << "true" << std::endl;
-            //         } else {
-            //             std::cout << "false" << std::endl;
-            //         }
-            //     }
-            // }
+        } else if (isCombiner(current.c_str())) {
+            
         }
     }
 
