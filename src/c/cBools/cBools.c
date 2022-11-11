@@ -20,19 +20,45 @@ int isCombiner(const char comb[]) {
 }
 
 int solveDoubleBool(double num1, const char comp[], double num2) {
-    if (!strcmp(comp, "<<") && num1 < num2) {
-        return 1;
-    } else if (!strcmp(comp, "<=") && num1 <= num2) {
-        return 1;
-    } else if (!strcmp(comp, ">>") && num1 > num2) {
-        return 1;
-    } else if (!strcmp(comp, ">=") && num1 >= num2) {
-        return 1;
-    } else if (!strcmp(comp, "==") && num1 == num2) {
-        return 1;
-    } else if (!strcmp(comp, "!=") && num1 != num2) {
-        return 1;
+    if (!strcmp(comp, "<<")) {
+        if (num1 < num2) return 1;
+
+        return 0;
+    } else if (!strcmp(comp, "<=")) {
+        if (num1 <= num2) return 1;
+
+        return 0;
+    } else if (!strcmp(comp, ">>")) {
+        if (num1 > num2) return 1;
+            
+        return 0;
+    } else if (!strcmp(comp, ">=")) {
+        if (num1 >= num2) return 1;
+        
+        return 0;
+    } else if (!strcmp(comp, "==")) {
+        if (num1 == num2) return 1;
+        
+        return 0;
+    } else if (!strcmp(comp, "!=")) {
+        if (num1 != num2) return 1;
+        
+        return 0;
     }
 
-    return 0;
+    return -1;
+}
+
+int solveStringBool(const char str1[], const char comp[], const char str2[]) {
+    if (!strcmp(comp, "==")) {
+        if (!strcmp(str1, str2)) return 1;
+
+        return 0;
+    } else if (!strcmp(comp, "!=")) {
+        if (strcmp(str1, str2)) return 1;
+
+        return 0;
+    }
+
+    return -1;
 }

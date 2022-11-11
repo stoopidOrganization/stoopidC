@@ -4,6 +4,12 @@
 
 #include "../utils/utils.hpp"
 
+bool isString(std::string str) {
+    if (str[0] == '\"' && str[str.size() - 1] == '\"') return 1;
+
+    return 0;
+}
+
 std::string removeQuotation(std::string input) {
     std::string output;
 
