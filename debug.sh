@@ -1,4 +1,4 @@
-make compile
+make compile-linux
 make exe
 make rm
 
