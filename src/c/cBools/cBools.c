@@ -12,6 +12,13 @@ int isComparator(const char comp[]) {
 }
 
 int solveDoubleBool(double num1, const char comp[], double num2) {
+    if (!strcmp(comp, "<<")) {
+    } else if (!strcmp(comp, "<=")) {
+    } else if (!strcmp(comp, ">>")) {
+    } else if (!strcmp(comp, ">=")) {
+    } else if (!strcmp(comp, "==")) {
+    } else if (!strcmp(comp, "!=")) {
+    }
 
     return 0;
 }
