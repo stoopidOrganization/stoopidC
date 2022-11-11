@@ -1,5 +1,4 @@
 CC = g++
-rm = rm
 
 compile:
 	${CC} -Wall -c ./src/*.cpp
@@ -9,5 +8,8 @@ compile:
 exe:
 	${CC} -o ./build/stoopid *.o
 
+rm:
+	rm *.o
+
 del:
-	${rm} *.o
+	del *.o

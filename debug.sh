@@ -1,6 +1,6 @@
 make compile
 make exe
-make del
+make rm
 
 echo 
 echo ------------------------
