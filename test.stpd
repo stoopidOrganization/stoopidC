@@ -4,6 +4,6 @@ var : c = a + b
 
 out : c
 
-var : text = hi
+var : text = "hello world"
 
 out : text
