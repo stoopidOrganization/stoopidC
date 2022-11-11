@@ -30,7 +30,7 @@ std::string makeStpdString(std::string input) {
     }
 
     for (size_t i = 0; i < trimStr.size(); i++) {
-        if (trimStr[i][0] == '\"' && trimStr[i][trimStr.size() - 1]) {
+        if (trimStr[i][0] == '\"' && trimStr[i][trimStr[i].size() - 1] == '\"') {
             output += removeQuotation(trimStr[i]);
         } else if (isVariable(trimStr[i])) {
             output += removeQuotation(getVariable(trimStr[i]).value);

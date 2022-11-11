@@ -77,7 +77,6 @@ std::string getValue(std::string input) {
         try {
             return makeStpdString(input);
         } catch (int f) {
-            std::cout << "test" << std::endl;
             if (isVariable(trim(input, ' '))) {
                 return getVariable(input).value;
             }
