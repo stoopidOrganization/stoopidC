@@ -5,6 +5,7 @@
 
 #include "cpp/utils/utils.hpp"
 #include "cpp/strings/stringHandler.hpp"
+#include "cpp/bools/boolManager.hpp"
 
 int main() {
     // load file
@@ -37,6 +38,8 @@ int main() {
             std::cout << removeQuotation(getValue(linepieces[1])) << std::endl;
         }
     }
+
+    std::cout << solveBool("1 << 2 && \"hello world\" == text") << std::endl;
 
     return 0;
 }

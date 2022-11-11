@@ -77,10 +77,12 @@ std::string getValue(std::string input) {
         try {
             return makeStpdString(input);
         } catch (int f) {
-            if (isVariable(input)) {
+            std::cout << "test" << std::endl;
+            if (isVariable(trim(input, ' '))) {
                 return getVariable(input).value;
             }
 
+            throw 69;
             return input;
         }
     }
