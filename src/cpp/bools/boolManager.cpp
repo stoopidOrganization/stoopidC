@@ -4,6 +4,8 @@
 
 #include "../utils/utils.hpp"
 #include "../math/math.hpp" 
+#include "../strings/stringHandler.hpp"
+#include "../../c/cBools/cBools.h"
 
 std::vector<std::string> splitBool(std::string input) {
     std::vector<std::string> output;
@@ -68,19 +70,24 @@ std::string solveBool(std::string input) {
     for (size_t i = 0; i < splitUp.size(); i++) {
         std::string current = splitUp[i];
 
-        if (current == "<<") {
+        if (isComparator(current.c_str())) {
             if (isNumber(splitUp[i - 1]) && isNumber(splitUp[i + 1])) {
                 double num1 = stod(splitUp[i - 1]);
                 double num2 = stod(splitUp[i + 1]);
 
-                if (num1 < num2) {
-                    std::cout << "true" << std::endl;
-                } else {
-                    std::cout << "false" << std::endl;
-                }
-            } else {
-                throw 69;
+                std::cout << solveDoubleBool(num1, current.c_str(), num2) << std::endl;
             }
+            //     if (current == "<<" || current == ">>" || current == "==" || current == "!=") {
+            //         double num1 = stod(splitUp[i - 1]);
+            //         double num2 = stod(splitUp[i + 1]);
+
+            //         if (num1 < num2) {
+            //             std::cout << "true" << std::endl;
+            //         } else {
+            //             std::cout << "false" << std::endl;
+            //         }
+            //     }
+            // }
         }
     }
 
