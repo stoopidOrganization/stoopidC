@@ -4,7 +4,7 @@
 
 #include "../variables/variableManager.hpp"
 #include "../math/math.hpp"
-#include "../stringHandler/stringHandler.hpp"
+#include "../strings/stringHandler.hpp"
 
 std::string removeChar(std::string input, char remove) {
     std::string output = "";

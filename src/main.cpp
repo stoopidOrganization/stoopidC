@@ -4,7 +4,7 @@
 #include <string>
 
 #include "cpp/utils/utils.hpp"
-#include "cpp/stringHandler/stringHandler.hpp"
+#include "cpp/strings/stringHandler.hpp"
 
 int main() {
     // load file
