@@ -3,6 +3,7 @@
 #include <vector>
 #include <string>
 #include "cpp/utils.hpp"
+#include "cpp/stringHandler.hpp"
 
 int main() {
     // load file
@@ -32,7 +33,7 @@ int main() {
 
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
-            std::cout << trim(getValue(trim(linepieces[1], ' ')), '\"') << std::endl;
+            std::cout << removeQuotation(getValue(linepieces[1])) << std::endl;
         }
     }
 

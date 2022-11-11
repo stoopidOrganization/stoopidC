@@ -3,6 +3,7 @@
 #include <iostream>
 #include "variableManager.hpp"
 #include "math.hpp"
+#include "stringHandler.hpp"
 
 std::string removeChar(std::string input, char remove) {
     std::string output = "";
@@ -69,15 +70,17 @@ std::string getValue(std::string input) {
         return input;
     }
 
-    input = removeChar(input, ' ');
-
     try {
-        return std::to_string(solveEquasion(input));
+        return std::to_string(solveEquasion(removeChar(input, ' ')));
     } catch (int e) {
-        if (isVariable(input)) {
-            return getVariable(input).value;
-        }
+        try {
+            return makeStpdString(input);
+        } catch (int f) {
+            if (isVariable(input)) {
+                return getVariable(input).value;
+            }
 
-        return input;
+            return input;
+        }
     }
 }

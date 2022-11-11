@@ -6,4 +6,4 @@ out : c
 
 var : text = "hello world"
 
-out : text
+out : text + " " + c
