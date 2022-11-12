@@ -1,7 +1,13 @@
 #include <string>
 #include <vector>
-#include <iostream>
-#include "utils.hpp"
+
+#include "../utils/utils.hpp"
+
+bool isString(std::string str) {
+    if (str[0] == '\"' && str[str.size() - 1] == '\"') return 1;
+
+    return 0;
+}
 
 std::string removeQuotation(std::string input) {
     std::string output;
@@ -29,7 +35,7 @@ std::string makeStpdString(std::string input) {
     }
 
     for (size_t i = 0; i < trimStr.size(); i++) {
-        if (trimStr[i][0] == '\"' && trimStr[i][trimStr.size() - 1]) {
+        if (trimStr[i][0] == '\"' && trimStr[i][trimStr[i].size() - 1] == '\"') {
             output += removeQuotation(trimStr[i]);
         } else if (isVariable(trimStr[i])) {
             output += removeQuotation(getVariable(trimStr[i]).value);

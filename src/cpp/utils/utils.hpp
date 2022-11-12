@@ -1,7 +1,8 @@
 #include <string>
 #include <vector>
-#include "math.hpp"
-#include "variableManager.hpp"
+
+#include "../math/math.hpp"
+#include "../variables/variableManager.hpp"
 
 std::string removeChar(std::string input, char remove);
 

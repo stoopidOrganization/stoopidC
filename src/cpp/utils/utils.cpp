@@ -1,9 +1,12 @@
 #include <string>
 #include <vector>
 #include <iostream>
-#include "variableManager.hpp"
-#include "math.hpp"
-#include "stringHandler.hpp"
+
+#include "../variables/variableManager.hpp"
+#include "../math/math.hpp"
+#include "../strings/stringHandler.hpp"
+#include "../bools/boolManager.hpp"
+#include "../../c/cBools/cBools.h"
 
 std::string removeChar(std::string input, char remove) {
     std::string output = "";
@@ -66,21 +69,27 @@ std::string trim(std::string input, char trimmer) {
 }
 
 std::string getValue(std::string input) {
-    if (input[0] == '\"' && input[input.size() - 1] == '\"') {
-        return input;
-    }
-
     try {
         return std::to_string(solveEquasion(removeChar(input, ' ')));
-    } catch (int e) {
+    } catch (int mathErr) {
         try {
             return makeStpdString(input);
-        } catch (int f) {
-            if (isVariable(input)) {
+        } catch (int strErr) {
+            if (isVariable(trim(input, ' '))) {
                 return getVariable(input).value;
             }
 
-            return input;
+            if (isBool(trim(input, ' ').c_str())) {
+                return trim(input, ' ');
+            }
+
+            try {
+                return solveBool(trim(input, ' '));
+            } catch (int boolErr) {
+                throw 69;
+            }
         }
     }
+
+    return input;
 }

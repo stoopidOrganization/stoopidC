@@ -7,3 +7,9 @@ out : c
 var : text = "hello world"
 
 out : text + " " + c
+
+var : boolTest = 2 >> 3
+
+out : "bool Test " + boolTest
+
+out : boolTest || c == 100
