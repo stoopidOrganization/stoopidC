@@ -65,11 +65,11 @@ Booleans are also completely implemented although they work different than in ot
 
 | Comparator | Description |
 | ---------- | ----------- |
-| << | less than |
-| >> | greater than |
-| <= | less or equal |
-| >= | greater or equal |
-| == | equal |
-| != | not equal |
-| && | and |
-| || | or |
+| `<<` | less than |
+| `>>` | greater than |
+| `<=` | less or equal |
+| `>=` | greater or equal |
+| `==` | equal |
+| `!=` | not equal |
+| `&&` | and |
+| `||` | or |
