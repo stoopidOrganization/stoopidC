@@ -80,3 +80,21 @@ int solveStringBool(const char str1[], const char comp[], const char str2[]) {
 
     return -1;
 }
+
+int solveCombiner(int bool1, const char comb[], int bool2) {
+    if (!strcmp(comb, "&&")) {
+        if(bool1 && bool2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    } else if (!strcmp(comb, "||")) {
+        if (bool1 || bool2) {
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    return -1;
+}
