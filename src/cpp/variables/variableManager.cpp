@@ -42,3 +42,28 @@ int isVariable(std::string name) {
 
     return 0;
 }
+
+std::vector<std::string> getVarPieces(std::string input) {
+    std::vector<std::string> output;
+    std::string name = "";
+    std::string value = "";
+    int str = 0;
+
+    for (size_t i = 0; i < input.size(); i++) {
+        if (str > 0) {
+            value += input[i];
+        } else {
+            if (input[i] == '=') {
+                str++;
+                continue;
+            }
+            
+            name += input[i];
+        }
+    }
+
+    output.push_back(name);
+    output.push_back(value);
+
+    return output;
+}

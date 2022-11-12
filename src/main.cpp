@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
         linepieces[0] = removeChar(linepieces[0], ' ');
 
         if (linepieces[0] == "var") {
-            std::vector<std::string> varPieces = splitString(linepieces[1], '=');
+            std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 1));
 
             Variable newVar;
             newVar.name = removeChar(varPieces[0], ' ');
@@ -46,7 +46,7 @@ int main(int argc, char *argv[]) {
 
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
-            std::cout << removeQuotation(getValue(linepieces[1])) << std::endl;
+            std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
         } else if (linepieces[0] == "goto") {
             i = stoi(linepieces[1]) - 2;
         }

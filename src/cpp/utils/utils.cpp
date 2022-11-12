@@ -8,6 +8,20 @@
 #include "../bools/boolManager.hpp"
 #include "../../c/cBools/cBools.h"
 
+std::string combineArgs(std::vector<std::string> input , size_t start) {
+    std::string output = "";
+
+    for (size_t i = start; i < input.size(); i++) {
+        output += input[i];
+        if (i + 1 < input.size()) {
+            output += ":";
+        }
+    }
+    
+
+    return output;
+}
+
 std::string removeChar(std::string input, char remove) {
     std::string output = "";
 
