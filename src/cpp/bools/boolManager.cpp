@@ -87,6 +87,8 @@ std::string solveBool(std::string input) {
             }
         } else if (isCombiner(current.c_str())) {
             resolved.push_back(current);
+        } else if (current == "true" || current == "false") {
+            resolved.push_back(std::to_string(strToBool(current.c_str())));
         }
     }
 

@@ -5,6 +5,7 @@
 #include "../variables/variableManager.hpp"
 #include "../math/math.hpp"
 #include "../strings/stringHandler.hpp"
+#include "../../c/cBools/cBools.h"
 
 std::string removeChar(std::string input, char remove) {
     std::string output = "";
@@ -67,10 +68,6 @@ std::string trim(std::string input, char trimmer) {
 }
 
 std::string getValue(std::string input) {
-    if (input[0] == '\"' && input[input.size() - 1] == '\"') {
-        return input;
-    }
-
     try {
         return std::to_string(solveEquasion(removeChar(input, ' ')));
     } catch (int e) {
@@ -79,6 +76,10 @@ std::string getValue(std::string input) {
         } catch (int f) {
             if (isVariable(trim(input, ' '))) {
                 return getVariable(input).value;
+            }
+
+            if (isBool(trim(input, ' ').c_str())) {
+                return trim(input, ' ');
             }
 
             throw 69;

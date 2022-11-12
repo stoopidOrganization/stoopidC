@@ -1,7 +1,7 @@
 #include <string.h>
 
 int isBool(const char input[]) {
-    if (!strcmp(input, "0") || !strcmp(input, "1")) {
+    if (!strcmp(input, "0") || !strcmp(input, "1") || !strcmp(input, "false") || !strcmp(input, "true")) {
         return 1;
     }
 
@@ -9,9 +9,9 @@ int isBool(const char input[]) {
 }
 
 int strToBool(const char input[]) {
-    if (!strcmp(input, "0")) {
+    if (!strcmp(input, "0") || !strcmp(input, "false")) {
         return 0;
-    } else if (!strcmp(input, "1")) {
+    } else if (!strcmp(input, "1") || !strcmp(input, "true")) {
         return 1;
     }
 

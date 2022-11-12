@@ -39,7 +39,7 @@ int main() {
         }
     }
 
-    std::cout << solveBool("1 << 2 && \"hello world\" == text") << std::endl;
+    std::cout << solveBool("false && 1 << 2") << std::endl;
 
     return 0;
 }
