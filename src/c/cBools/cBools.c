@@ -1,6 +1,11 @@
 #include <string.h>
+#include "../../cpp/utils/utils.hpp"
 
 int isBool(const char input[]) {
+    if (input[0] == '!') {
+        return isBool(removeFirstCharInString(input));
+    }
+
     return (!strcmp(input, "0") || !strcmp(input, "1") || !strcmp(input, "false") || !strcmp(input, "true"));
 }
 

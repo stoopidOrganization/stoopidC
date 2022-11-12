@@ -8,6 +8,21 @@
 #include "../bools/boolManager.hpp"
 #include "../../c/cBools/cBools.h"
 
+const char* removeFirstCharInString(const char* input) {
+    std::string str = input;
+    std::string output = "";
+
+    if (str.size() < 2) {
+        throw 69;
+    }
+
+    for (size_t i = 1; i < str.size(); i++) {
+        output += str[i];
+    }
+    
+    return output.c_str();
+}
+
 std::string combineArgs(std::vector<std::string> input , size_t start) {
     std::string output = "";
 
