@@ -47,6 +47,8 @@ int main(int argc, char *argv[]) {
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
             std::cout << removeQuotation(getValue(linepieces[1])) << std::endl;
+        } else if (linepieces[0] == "goto") {
+            i = stoi(linepieces[1]) - 2;
         }
     }
 
