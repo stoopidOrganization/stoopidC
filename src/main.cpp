@@ -49,6 +49,9 @@ int main(int argc, char *argv[]) {
             std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
         } else if (linepieces[0] == "goto") {
             i = stoi(linepieces[1]) - 2;
+        } else {
+            std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
+            return 1;
         }
     }
 
