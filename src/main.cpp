@@ -39,7 +39,5 @@ int main() {
         }
     }
 
-    std::cout << solveBool("false && 1 << 2") << std::endl;
-
     return 0;
 }
