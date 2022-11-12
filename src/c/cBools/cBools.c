@@ -9,6 +9,16 @@ int isBool(const char input[]) {
     return 0;
 }
 
+int strToBool(const char input[]) {
+    if (!strcmp(input, "0")) {
+        return 0;
+    } else if (!strcmp(input, "1")) {
+        return 1;
+    }
+
+    return -1;
+}
+
 int isComparator(const char comp[]) {
     printf("Comp: %s\n", comp);
 
