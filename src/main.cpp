@@ -7,19 +7,30 @@
 #include "cpp/strings/stringHandler.hpp"
 #include "cpp/bools/boolManager.hpp"
 
-int main() {
-    // load file
-    std::ifstream Script("test.stpd");
-
+int main(int argc, char *argv[]) {
     std::vector<std::string> lines;
+    std::string filename = "";
 
-    std::string cache;
+    if (argc > 1) {
+        // load file
+        filename = argv[1];
+        std::ifstream Script(filename);
+        std::string cache;
 
-    while (getline (Script, cache)) {
-        lines.push_back(cache);
+        while (getline (Script, cache)) {
+            lines.push_back(cache);
+        }
+
+        Script.close();
+    } else {
+        std::cerr << "No filename was given!" << std::endl;
+        return 1;
     }
 
-    Script.close();
+    if (lines.size() < 1) {
+        std::cerr << "The file " + filename + " doesn't exist!" << std::endl;
+        return 1;
+    }
 
     // output file
     for (size_t i = 0; i < lines.size(); i++) {
