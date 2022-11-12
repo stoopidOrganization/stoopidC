@@ -38,6 +38,7 @@ int main(int argc, char *argv[]) {
         linepieces[0] = removeChar(linepieces[0], ' ');
 
         if (linepieces[0] == "var") {
+            // initialize a new variable
             std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 1));
 
             Variable newVar;
@@ -46,9 +47,14 @@ int main(int argc, char *argv[]) {
 
             addVariable(newVar);
         } else if (linepieces[0] == "out") {
+            // print something to the output
             std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
         } else if (linepieces[0] == "goto") {
+            // change the next line read by the interpreter
             i = stoi(linepieces[1]) - 2;
+        } else if (linepieces[0] == "") {
+            // do nothing on empty lines
+            continue;
         } else {
             std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
             return 1;
