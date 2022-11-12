@@ -1,7 +1,42 @@
+
 # stoopidC
+
 The stoopid programing language rewritten in C
 
-## Yes, the installer gets detected as a virus, its not tho
-The installer is open source you can just check the source code.  
-Some av engines just detect it as a virus because it adds to path with shell  
-commads, however its safe, and adding to path in the first place is optional.
+---
+
+## Guide
+
+| Keyword | Description | Syntax |
+| ------- | ----------- | ------ |
+| var | Defines a variable | var : `name` = `value` |
+| out | Prints something to the output | out : `value` |
+
+### String
+
+Strings can be combined with `+`
+
+ints, bools and variables can also be combined with strings
+
+### Math
+
+Math equasions can be used anywhere
+
+All standart operators can be used as well as `%` for modulo and `^` to get the power of something
+
+Math equasions also support brackets
+
+### Bools
+
+Booleans are also completely implemented although they work different than in other languages
+
+| Comparator | Description |
+| ---------- | ----------- |
+| << | less than |
+| >> | greater than |
+| <= | less or equal |
+| >= | greater or equal |
+| == | equal |
+| != | not equal |
+| && | and |
+| || | or |
