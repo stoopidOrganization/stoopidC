@@ -52,8 +52,8 @@ int main(int argc, char *argv[]) {
         } else if (linepieces[0] == "goto") {
             // change the next line read by the interpreter
             i = stoi(linepieces[1]) - 2;
-        } else if (linepieces[0] == "") {
-            // do nothing on empty lines
+        } else if (linepieces[0] == "" || linepieces[0][0] == '#') {
+            // do nothing on empty lines pr comments
             continue;
         } else {
             std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
