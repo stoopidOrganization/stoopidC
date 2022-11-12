@@ -68,3 +68,19 @@ std::vector<std::string> getVarPieces(std::string input) {
 
     return output;
 }
+
+int setVariable(std::string name, std::string value) {
+    if (!isVariable(name)) {
+        throw 69;
+        return 1;
+    }
+
+    for (size_t i = 0; i < variables.size(); i++) {
+        if (variables[i].name == name) {
+            variables[i].value = value;
+        }
+    }
+    
+
+    return 0;
+}
