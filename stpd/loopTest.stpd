@@ -1,3 +1,7 @@
-out : "Hi"
+var : a = 0
 
-goto : 1
+a = a + 1
+
+out : a
+
+goto : 3

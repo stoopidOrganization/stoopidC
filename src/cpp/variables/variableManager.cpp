@@ -48,19 +48,25 @@ std::vector<std::string> getVarPieces(std::string input) {
     std::vector<std::string> output;
     std::string name = "";
     std::string value = "";
-    int str = 0;
+    bool str = false;
+    bool found = false;
 
     for (size_t i = 0; i < input.size(); i++) {
-        if (str > 0) {
+        if (str) {
             value += input[i];
         } else {
             if (input[i] == '=') {
-                str++;
+                str = true;
+                found = true;
                 continue;
             }
             
             name += input[i];
         }
+    }
+
+    if (!found) {
+        throw 69;
     }
 
     output.push_back(name);

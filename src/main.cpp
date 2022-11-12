@@ -56,8 +56,18 @@ int main(int argc, char *argv[]) {
             // do nothing on empty lines pr comments
             continue;
         } else {
-            std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
-            return 1;
+            try {
+                std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 0));
+
+                if (isVariable(varPieces[0])) {
+                    setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
+                } else {
+                    throw 69;
+                }
+            } catch (int varErr) {
+                std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
+                return 1;
+            }
         }
     }
 
