@@ -1,6 +1,14 @@
 #include <string.h>
 #include <stdio.h>
 
+int isBool(const char input[]) {
+    if (!strcmp(input, "0") || !strcmp(input, "1")) {
+        return 1;
+    }
+
+    return 0;
+}
+
 int isComparator(const char comp[]) {
     printf("Comp: %s\n", comp);
 

@@ -91,8 +91,26 @@ std::string solveBool(std::string input) {
         }
     }
 
+    int cache[2];
+    cache[0] = -1;
+    cache[1] = -1;
+
     for (size_t i = 0; i < resolved.size(); i++) {
-        std::cout << resolved[i] << std::endl;
+        if (isBool(resolved[i].c_str()) && cache[0] == -1) {
+            cache[0] = stoi(resolved[i]);
+        } else if (isCombiner(resolved[i].c_str()) && isBool(resolved[i + 1].c_str())) {
+            cache[1] = stoi(resolved[i + 1]);
+        } else {
+            throw 69;
+        }
+    }
+
+    if (cache[0] == 0) {
+        result = "false";
+    } else if (cache[0] == 1) {
+        result = "true";
+    } else {
+        throw 69;
     }
     
     return result;

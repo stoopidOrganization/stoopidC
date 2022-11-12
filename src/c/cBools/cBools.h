@@ -1,3 +1,5 @@
+int isBool(const char input[]);
+
 int isComparator(const char comp[]);
 
 int isCombiner(const char comb[]);
