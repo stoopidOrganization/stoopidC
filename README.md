@@ -72,4 +72,4 @@ Booleans are also completely implemented although they work different than in ot
 | `==` | equal |
 | `!=` | not equal |
 | `&&` | and |
-| `||` | or |
+| `\|\|` | or |
