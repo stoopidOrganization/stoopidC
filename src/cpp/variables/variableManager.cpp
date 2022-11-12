@@ -11,6 +11,7 @@ std::vector<Variable> getVariables() {
 int addVariable(Variable var) {
     for (size_t i = 0; i < variables.size(); i++) {
         if (var.name == variables[i].name) {
+            throw 69;
             return 1;
         }
     }
