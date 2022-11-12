@@ -96,13 +96,13 @@ std::string solveBool(std::string input) {
     cache[1] = -1;
 
     for (size_t i = 0; i < resolved.size(); i++) {
-        std::cout << resolved[i] << std::endl;
-
         if (isBool(resolved[i].c_str()) && cache[0] == -1) {
             cache[0] = strToBool(resolved[i].c_str());
         } else if (isCombiner(resolved[i].c_str()) && isBool(resolved[i + 1].c_str())) {
             cache[1] = strToBool(resolved[i + 1].c_str());
-            
+
+            cache[0] = solveCombiner(cache[0], resolved[i].c_str(), cache[1]);
+
             i++;
         } else {
             throw 69;
