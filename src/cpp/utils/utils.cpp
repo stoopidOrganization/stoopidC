@@ -109,6 +109,10 @@ std::string getValue(std::string input) {
             }
 
             if (isBool(trim(input, ' ').c_str())) {
+                if (trim(input, ' ')[0] == '!') {
+                    return std::to_string(!stoi(trim(input, ' ')));
+                }
+
                 return trim(input, ' ');
             }
 
