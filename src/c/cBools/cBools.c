@@ -1,11 +1,7 @@
 #include <string.h>
 
 int isBool(const char input[]) {
-    if (!strcmp(input, "0") || !strcmp(input, "1") || !strcmp(input, "false") || !strcmp(input, "true")) {
-        return 1;
-    }
-
-    return 0;
+    return (!strcmp(input, "0") || !strcmp(input, "1") || !strcmp(input, "false") || !strcmp(input, "true"));
 }
 
 int strToBool(const char input[]) {
@@ -19,11 +15,7 @@ int strToBool(const char input[]) {
 }
 
 int isComparator(const char comp[]) {
-    if (!strcmp(comp, "<<") || !strcmp(comp, "<=") || !strcmp(comp, ">>") || !strcmp(comp, ">=") || !strcmp(comp, "==") || !strcmp(comp, "!=")) {
-        return 1;
-    }
-
-    return 0;
+    return (!strcmp(comp, "<<") || !strcmp(comp, "<=") || !strcmp(comp, ">>") || !strcmp(comp, ">=") || !strcmp(comp, "==") || !strcmp(comp, "!="));
 }
 
 int isCombiner(const char comb[]) {
@@ -36,29 +28,17 @@ int isCombiner(const char comb[]) {
 
 int solveDoubleBool(double num1, const char comp[], double num2) {
     if (!strcmp(comp, "<<")) {
-        if (num1 < num2) return 1;
-
-        return 0;
+        return (num1 < num2);
     } else if (!strcmp(comp, "<=")) {
-        if (num1 <= num2) return 1;
-
-        return 0;
+        return (num1 <= num2);
     } else if (!strcmp(comp, ">>")) {
-        if (num1 > num2) return 1;
-            
-        return 0;
+        return (num1 > num2);
     } else if (!strcmp(comp, ">=")) {
-        if (num1 >= num2) return 1;
-        
-        return 0;
+        return (num1 >= num2);
     } else if (!strcmp(comp, "==")) {
-        if (num1 == num2) return 1;
-        
-        return 0;
+        return (num1 == num2);
     } else if (!strcmp(comp, "!=")) {
-        if (num1 != num2) return 1;
-        
-        return 0;
+        return (num1 != num2);
     }
 
     return -1;
@@ -66,13 +46,10 @@ int solveDoubleBool(double num1, const char comp[], double num2) {
 
 int solveStringBool(const char str1[], const char comp[], const char str2[]) {
     if (!strcmp(comp, "==")) {
-        if (!strcmp(str1, str2)) return 1;
+        return (!strcmp(str1, str2));
 
-        return 0;
     } else if (!strcmp(comp, "!=")) {
-        if (strcmp(str1, str2)) return 1;
-
-        return 0;
+        return (strcmp(str1, str2));
     }
 
     return -1;
@@ -80,17 +57,9 @@ int solveStringBool(const char str1[], const char comp[], const char str2[]) {
 
 int solveCombiner(int bool1, const char comb[], int bool2) {
     if (!strcmp(comb, "&&")) {
-        if(bool1 && bool2) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return(bool1 && bool2);
     } else if (!strcmp(comb, "||")) {
-        if (bool1 || bool2) {
-            return 1;
-        } else {
-            return 0;
-        }
+        return (bool1 || bool2);
     }
 
     return -1;
