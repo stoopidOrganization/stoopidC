@@ -6,6 +6,6 @@ mingw32-make del
 
 echo ------------------------
 
-.\build\stoopid.exe test.stpd
+.\build\stoopid.exe .\stpd\test.stpd
 
 @echo on
