@@ -8,19 +8,18 @@
 #include "../bools/boolManager.hpp"
 #include "../../c/cBools/cBools.h"
 
-const char* removeFirstCharInString(const char* input) {
-    std::string str = input;
+std::string removeFirstCharInString(std::string input) {
     std::string output = "";
 
-    if (str.size() < 2) {
+    if (input.size() < 2) {
         throw 69;
     }
 
-    for (size_t i = 1; i < str.size(); i++) {
-        output += str[i];
+    for (size_t i = 1; i < input.size(); i++) {
+        output += input[i];
     }
     
-    return output.c_str();
+    return output;
 }
 
 std::string combineArgs(std::vector<std::string> input , size_t start) {
@@ -113,10 +112,10 @@ std::string getValue(std::string input) {
         std::string uninverted = removeFirstCharInString(trimmedInput.c_str());
         std::cout << "uninverted bool: " + uninverted << std::endl;
 
-        if (isBool(uninverted.c_str())) {
-            std::cout << "inverted bool: " + std::to_string(!strToBool(uninverted.c_str())) << std::endl;
+        if (isBool(getValue(uninverted).c_str())) {
+            std::cout << "inverted bool: " + std::to_string(!strToBool(getValue(uninverted).c_str())) << std::endl;
 
-            return std::to_string(strToBool(uninverted.c_str()));
+            return std::to_string(strToBool(getValue(uninverted).c_str()));
         }
     }
     
