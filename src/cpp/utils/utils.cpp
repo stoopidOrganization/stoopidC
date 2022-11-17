@@ -98,26 +98,36 @@ std::string trim(std::string input, char trimmer) {
 }
 
 std::string getValue(std::string input) {
+    std::string trimmedInput = trim(input, ' ');
+
+    if (isVariable(trimmedInput)) {
+        return getVariable(trimmedInput).value;
+    }
+
+    if (isBool(trimmedInput.c_str())) {
+        return trimmedInput;
+    }
+
+    if (trimmedInput[0] == '!') {
+        std::cout << "test" << std::endl;
+        std::string uninverted = removeFirstCharInString(trimmedInput.c_str());
+        std::cout << "uninverted bool: " + uninverted << std::endl;
+
+        if (isBool(uninverted.c_str())) {
+            std::cout << "inverted bool: " + std::to_string(!strToBool(uninverted.c_str())) << std::endl;
+
+            return std::to_string(strToBool(uninverted.c_str()));
+        }
+    }
+    
     try {
         return std::to_string(solveEquasion(removeChar(input, ' ')));
     } catch (int mathErr) {
         try {
             return makeStpdString(input);
         } catch (int strErr) {
-            if (isVariable(trim(input, ' '))) {
-                return getVariable(input).value;
-            }
-
-            if (isBool(trim(input, ' ').c_str())) {
-                if (trim(input, ' ')[0] == '!') {
-                    return std::to_string(!stoi(trim(input, ' ')));
-                }
-
-                return trim(input, ' ');
-            }
-
             try {
-                return solveBool(trim(input, ' '));
+                return solveBool(trimmedInput);
             } catch (int boolErr) {
                 throw 69;
             }
