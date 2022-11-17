@@ -12,6 +12,6 @@ var : boolTest = 2 >> 3
 
 out : "bool Test: " + boolTest
 
-out : !boolTest && c == 100
+out : boolTest && c == 100
 
 # cool comment

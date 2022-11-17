@@ -112,7 +112,7 @@ std::string getValue(std::string input) {
         std::string uninverted = removeFirstCharInString(trimmedInput.c_str());
         std::cout << "uninverted bool: " + uninverted << std::endl;
 
-        if (isBool(getValue(uninverted).c_str())) {
+        if (isBool(uninverted.c_str()) || isVariable(uninverted.c_str())) {
             std::cout << "inverted bool: " + std::to_string(!strToBool(getValue(uninverted).c_str())) << std::endl;
 
             return std::to_string(strToBool(getValue(uninverted).c_str()));
