@@ -44,6 +44,7 @@ You can also use the provied debug scripts for your Operating System but they ar
 | ------- | ----------- | ------ |
 | var | Defines a variable | `var : <name> = <value>` |
 | out | Prints something to the output | `out : <value>` |
+| goto | Sets the next line to be read by the Interpreter | `goto : <linenumber>` |
 
 ### String
 
