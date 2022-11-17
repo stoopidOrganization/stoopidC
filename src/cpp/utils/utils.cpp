@@ -108,13 +108,9 @@ std::string getValue(std::string input) {
     }
 
     if (trimmedInput[0] == '!') {
-        std::cout << "test" << std::endl;
         std::string uninverted = removeFirstCharInString(trimmedInput.c_str());
-        std::cout << "uninverted bool: " + uninverted << std::endl;
 
         if (isBool(uninverted.c_str()) || isVariable(uninverted.c_str())) {
-            std::cout << "inverted bool: " + std::to_string(!strToBool(getValue(uninverted).c_str())) << std::endl;
-
             return std::to_string(strToBool(getValue(uninverted).c_str()));
         }
     }
