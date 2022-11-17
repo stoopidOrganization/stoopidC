@@ -58,3 +58,4 @@ log.txt
 *.log
 __pycache__
 *.spec
+.fleet

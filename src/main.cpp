@@ -6,6 +6,7 @@
 #include "cpp/utils/utils.hpp"
 #include "cpp/strings/stringHandler.hpp"
 #include "cpp/bools/boolManager.hpp"
+#include "cpp/comment/comment.hpp"
 
 int main(int argc, char *argv[]) {
     std::vector<std::string> lines;
@@ -34,7 +35,7 @@ int main(int argc, char *argv[]) {
 
     // output file
     for (size_t i = 0; i < lines.size(); i++) {
-        std::vector<std::string> linepieces = splitString(lines[i], ':');
+        std::vector<std::string> linepieces = splitString(removeComment(lines[i]), ':');
         linepieces[0] = removeChar(linepieces[0], ' ');
 
         if (linepieces[0] == "var") {
