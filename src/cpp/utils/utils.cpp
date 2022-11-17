@@ -8,34 +8,6 @@
 #include "../bools/boolManager.hpp"
 #include "../../c/cBools/cBools.h"
 
-std::string removeFirstCharInString(std::string input) {
-    std::string output = "";
-
-    if (input.size() < 2) {
-        throw 69;
-    }
-
-    for (size_t i = 1; i < input.size(); i++) {
-        output += input[i];
-    }
-    
-    return output;
-}
-
-std::string combineArgs(std::vector<std::string> input , size_t start) {
-    std::string output = "";
-
-    for (size_t i = start; i < input.size(); i++) {
-        output += input[i];
-        if (i + 1 < input.size()) {
-            output += ":";
-        }
-    }
-    
-
-    return output;
-}
-
 std::string removeChar(std::string input, char remove) {
     std::string output = "";
 
@@ -97,32 +69,22 @@ std::string trim(std::string input, char trimmer) {
 }
 
 std::string getValue(std::string input) {
-    std::string trimmedInput = trim(input, ' ');
-
-    if (isVariable(trimmedInput)) {
-        return getVariable(trimmedInput).value;
-    }
-
-    if (isBool(trimmedInput.c_str())) {
-        return trimmedInput;
-    }
-
-    if (trimmedInput[0] == '!') {
-        std::string uninverted = removeFirstCharInString(trimmedInput.c_str());
-
-        if (isBool(uninverted.c_str()) || isVariable(uninverted.c_str())) {
-            return std::to_string(strToBool(getValue(uninverted).c_str()));
-        }
-    }
-    
     try {
         return std::to_string(solveEquasion(removeChar(input, ' ')));
     } catch (int mathErr) {
         try {
             return makeStpdString(input);
         } catch (int strErr) {
+            if (isVariable(trim(input, ' '))) {
+                return getVariable(input).value;
+            }
+
+            if (isBool(trim(input, ' ').c_str())) {
+                return trim(input, ' ');
+            }
+
             try {
-                return solveBool(trimmedInput);
+                return solveBool(trim(input, ' '));
             } catch (int boolErr) {
                 throw 69;
             }
