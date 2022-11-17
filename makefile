@@ -1,8 +1,10 @@
+python = python3
+
 compile:
-	python3 scripts/compile.py smart
+	${python} scripts/compile.py smart
 
 compile-all:
-	python3 scripts/compile.py all
+	${python} scripts/compile.py all
 
 run:
 	build/stoopid stpd/test.stpd
