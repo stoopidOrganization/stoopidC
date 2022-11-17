@@ -1,4 +1,5 @@
 #include <string.h>
+#include "../../cpp/utils/utils.hpp"
 
 int isBool(const char input[]) {
     return (!strcmp(input, "0") || !strcmp(input, "1") || !strcmp(input, "false") || !strcmp(input, "true"));

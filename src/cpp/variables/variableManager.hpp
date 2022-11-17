@@ -9,3 +9,7 @@ int addVariable(Variable var);
 Variable getVariable(std::string name);
 
 int isVariable(std::string name);
+
+std::vector<std::string> getVarPieces(std::string input);
+
+int setVariable(std::string name, std::string value);
