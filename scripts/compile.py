@@ -2,6 +2,11 @@ import hashlib, os, json, subprocess, sys, time
 
 start_time = time.perf_counter()
 
+COL_RESET = "\u001b[0m"
+COL_GREEN = "\u001b[32m"
+
+print("\n--------------------------------\n")
+
 # get all files
 filelist = []
 filetypes = (".c", ".cpp")
@@ -36,9 +41,9 @@ for f in filelist:
     hashlist[f] = getHash(f).hexdigest()
     
 def compile(name):
-    print(f'Compiling {name}')
+    print(f'Compiling {COL_GREEN + name + COL_RESET}')
     p = subprocess.Popen(["g++", "-Wall", "-c", os.path.join("..", name)], cwd=os.path.join("bin"))
-    print("finished")
+    print(f'finished compiling {COL_GREEN + name + COL_RESET}\n')
 
 # compare filehashes and compile if needed
 if "smart" in sys.argv:
@@ -73,5 +78,5 @@ if not os.path.isdir(os.path.join("build")):
 # compile executable
 os.system(f'g++ -o ./build/stoopid {os.path.join("bin", "*.o")}')
 
-print("\n-----------------\n")
+print("\n--------------------------------\n")
 print(f'Compilation took {round(time.perf_counter() - start_time, 2)}s\n')
