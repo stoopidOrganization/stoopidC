@@ -37,7 +37,7 @@ for f in filelist:
 def compile(name):
     print(f'Compiling {name}')
     p = subprocess.Popen(["g++", "-Wall", "-c", os.path.join("..", name)], cwd=os.path.join("bin"))
-    p.wait()
+    print("finished")
 
 if "smart" in sys.argv:
     if os.path.isfile(os.path.join("bin", "hashlist.json")):
