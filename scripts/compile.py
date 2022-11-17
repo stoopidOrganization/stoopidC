@@ -64,6 +64,9 @@ else:
 with open(os.path.join("bin", "hashlist.json"), 'w') as f:
     f.write(json.dumps(hashlist))
     
+if not os.path.isdir(os.path.join("build")):
+    os.mkdir("build")
+
 os.system(f'g++ -o ./build/stoopid {os.path.join("bin", "*.o")}')
 
 print("\n-----------------\n")
