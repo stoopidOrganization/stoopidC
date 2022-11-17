@@ -11,7 +11,6 @@ std::vector<Variable> getVariables() {
 int addVariable(Variable var) {
     for (size_t i = 0; i < variables.size(); i++) {
         if (var.name == variables[i].name) {
-            throw 69;
             return 1;
         }
     }
@@ -40,53 +39,6 @@ int isVariable(std::string name) {
             return 1;
         }
     }
-
-    return 0;
-}
-
-std::vector<std::string> getVarPieces(std::string input) {
-    std::vector<std::string> output;
-    std::string name = "";
-    std::string value = "";
-    bool str = false;
-    bool found = false;
-
-    for (size_t i = 0; i < input.size(); i++) {
-        if (str) {
-            value += input[i];
-        } else {
-            if (input[i] == '=') {
-                str = true;
-                found = true;
-                continue;
-            }
-            
-            name += input[i];
-        }
-    }
-
-    if (!found) {
-        throw 69;
-    }
-
-    output.push_back(name);
-    output.push_back(value);
-
-    return output;
-}
-
-int setVariable(std::string name, std::string value) {
-    if (!isVariable(name)) {
-        throw 69;
-        return 1;
-    }
-
-    for (size_t i = 0; i < variables.size(); i++) {
-        if (variables[i].name == name) {
-            variables[i].value = value;
-        }
-    }
-    
 
     return 0;
 }

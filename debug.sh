@@ -6,4 +6,4 @@ echo
 echo ------------------------
 echo 
 
-./build/stoopid ./stpd/test.stpd
+./build/stoopid test.stpd
