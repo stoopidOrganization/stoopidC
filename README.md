@@ -74,3 +74,10 @@ Booleans are also completely implemented although they work different than in ot
 | `!=` | not equal |
 | `&&` | and |
 | `\|\|` | or |
+| `!` | not |
+
+### Comments
+
+Comments always need their own line and can be used by starting with `#`
+
+Example: `# This is a comment`
