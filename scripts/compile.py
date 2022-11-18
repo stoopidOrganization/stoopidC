@@ -1,9 +1,24 @@
+###########################
+# How to use
+# 
+# compile with `python3 scripts/compile.py`
+#
+# Args:
+#  - smart          only compiles files that have been modified
+#  - all            compiles all files
+#  - --no-col       disables colors in the output
+###########################
+
 import hashlib, os, json, subprocess, sys, time
 
 start_time = time.perf_counter()
 
-COL_RESET = "\u001b[0m"
-COL_GREEN = "\u001b[32m"
+if "--no-col" in sys.argv:
+    COL_RESET = ""
+    COL_GREEN = ""
+else:
+    COL_RESET = "\u001b[0m"
+    COL_GREEN = "\u001b[32m"
 
 print("\n--------------------------------\n")
 
@@ -75,7 +90,12 @@ with open(os.path.join("bin", "hashlist.json"), 'w') as f:
 if not os.path.isdir(os.path.join("build")):
     os.mkdir("build")
 
+print("--------------------------------\n")
+print(f'Compiling Executable in {COL_GREEN + os.path.join("build") + COL_RESET} as {COL_GREEN}stoopid{COL_RESET}')
+
 os.system(f'g++ -o {os.path.join("build", "stoopid")} {os.path.join("bin", "*.o")}')
+
+print(f'Finished compiling executable at {COL_GREEN + os.path.join("build", "stoopid") + COL_RESET}')
 
 print("\n--------------------------------\n")
 print(f'Compilation took {round(time.perf_counter() - start_time, 2)}s\n')
