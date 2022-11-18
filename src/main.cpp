@@ -8,6 +8,16 @@
 #include "cpp/bools/boolManager.hpp"
 #include "cpp/comment/comment.hpp"
 
+size_t line = 0;
+
+size_t getCurrentLine() {
+    return line;
+}
+
+void setCurrentLine(size_t number) {
+    line = number;
+}
+
 int main(int argc, char *argv[]) {
     std::vector<std::string> lines;
     std::string filename = "";
@@ -34,8 +44,8 @@ int main(int argc, char *argv[]) {
     }
 
     // output file
-    for (size_t i = 0; i < lines.size(); i++) {
-        std::vector<std::string> linepieces = splitString(removeComment(lines[i]), ':');
+    for (line = 0; line < lines.size(); line++) {
+        std::vector<std::string> linepieces = splitString(removeComment(lines[line]), ':');
         linepieces[0] = removeChar(linepieces[0], ' ');
 
         if (linepieces[0] == "var") {
@@ -52,7 +62,7 @@ int main(int argc, char *argv[]) {
             std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
         } else if (linepieces[0] == "goto") {
             // change the next line read by the interpreter
-            i = stoi(linepieces[1]) - 2;
+            line = stoi(linepieces[1]) - 2;
         } else if (linepieces[0] == "" || linepieces[0][0] == '#') {
             // do nothing on empty lines pr comments
             continue;
