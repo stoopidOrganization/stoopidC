@@ -2,9 +2,9 @@ var : a = 90
 var : b = 10
 var : c = a + b
 
-out : c
+out : c # added inline comments
 
-var : text = "hello:=world"
+var : text = "hello := world"
 
 out : text + " " + c
 

@@ -2,6 +2,11 @@ import hashlib, os, json, subprocess, sys, time
 
 start_time = time.perf_counter()
 
+COL_RESET = "\u001b[0m"
+COL_GREEN = "\u001b[32m"
+
+print("\n--------------------------------\n")
+
 # get all files
 filelist = []
 filetypes = (".c", ".cpp")
@@ -22,6 +27,7 @@ getFiles(os.path.join("src"))
 if not os.path.isdir(os.path.join("bin")):
     os.mkdir("bin")
 
+# get filehash
 hashlist = {}
 
 def getHash(file):
@@ -35,10 +41,11 @@ for f in filelist:
     hashlist[f] = getHash(f).hexdigest()
     
 def compile(name):
-    print(f'Compiling {name}')
+    print(f'Compiling {COL_GREEN + name + COL_RESET}')
     p = subprocess.Popen(["g++", "-Wall", "-c", os.path.join("..", name)], cwd=os.path.join("bin"))
-    print("finished")
+    print(f'finished compiling {COL_GREEN + name + COL_RESET}\n')
 
+# compare filehashes and compile if needed
 if "smart" in sys.argv:
     if os.path.isfile(os.path.join("bin", "hashlist.json")):
         with open(os.path.join("bin", "hashlist.json"), "r") as f:
@@ -52,15 +59,16 @@ if "smart" in sys.argv:
                     compile(n)
     else:
         for n in hashlist:
-            
             compile(n)
+            
 elif "all" in sys.argv:
     for n in hashlist:
         compile(n)
 else:
     print("Error")
     exit(0)
-                    
+            
+# save file hash in file
 with open(os.path.join("bin", "hashlist.json"), 'w') as f:
     f.write(json.dumps(hashlist))
     
@@ -69,5 +77,5 @@ if not os.path.isdir(os.path.join("build")):
 
 os.system(f'g++ -o {os.path.join("build", "stoopid")} {os.path.join("bin", "*.o")}')
 
-print("\n-----------------\n")
+print("\n--------------------------------\n")
 print(f'Compilation took {round(time.perf_counter() - start_time, 2)}s\n')
