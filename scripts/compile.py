@@ -67,7 +67,7 @@ with open(os.path.join("bin", "hashlist.json"), 'w') as f:
 if not os.path.isdir(os.path.join("build")):
     os.mkdir("build")
 
-os.system(f'g++ -o ./build/stoopid {os.path.join("bin", "*.o")}')
+os.system(f'g++ -o {os.path.join("build", "stoopid")} {os.path.join("bin", "*.o")}')
 
 print("\n-----------------\n")
 print(f'Compilation took {round(time.perf_counter() - start_time, 2)}s\n')
