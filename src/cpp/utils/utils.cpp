@@ -13,7 +13,7 @@ std::string removeFirstCharInString(std::string input) {
     std::string output = "";
 
     if (input.size() < 2) {
-        throw 69;
+        throw error::stringError(input);
     }
 
     for (size_t i = 1; i < input.size(); i++) {
