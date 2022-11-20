@@ -89,7 +89,7 @@ std::string solveBool(std::string input) {
 
                 resolved.push_back(std::to_string(solveStringBool(str1.c_str(), current.c_str(), str2.c_str())));
             } else {
-                throw 69;
+                throw error::booleanError(current);
             }
         } else if (isCombiner(current.c_str())) {
             resolved.push_back(current);
