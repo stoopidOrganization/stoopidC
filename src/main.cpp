@@ -69,7 +69,12 @@ int main(int argc, char *argv[]) {
                 // change the next line read by the interpreter
                 line = stoi(linepieces[1]) - 2;
             } else if (linepieces[0] == "sleep") {
-                std::this_thread::sleep_for(std::chrono::milliseconds(stoi(utils::getValue(linepieces[1]))));            
+                std::string arg = utils::getValue(linepieces[1]);
+                if (!isNumber(arg)) throw error::invalidValue(arg);
+                int argnum = stoi(arg);
+                if (argnum < 1) throw error::invalidValue(arg);
+
+                std::this_thread::sleep_for(std::chrono::milliseconds(argnum));            
             } else if (linepieces[0] == "end") {
                 // ends the execution of the script
                 return 0;

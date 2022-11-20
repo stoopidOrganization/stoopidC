@@ -10,7 +10,7 @@ out : text + " " + c
 
 var : boolTest = 2 >> 3
 
-sleep : 1000
+sleep : 0
 
 out : "bool Test: " + boolTest
 
