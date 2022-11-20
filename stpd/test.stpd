@@ -10,6 +10,8 @@ out : text + " " + c
 
 var : boolTest = 2 >> 3
 
+sleep : -100
+
 out : "bool Test: " + boolTest
 
 out : !boolTest && c == 100
