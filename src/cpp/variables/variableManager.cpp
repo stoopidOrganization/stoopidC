@@ -68,7 +68,7 @@ std::vector<std::string> getVarPieces(std::string input) {
         }
     }
 
-    if (!found) {
+    if (!found || value.size() == 0) {
         throw error::noVarDeclaration();
     }
 
