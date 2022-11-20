@@ -1,2 +1,1 @@
-out : "hehehe"
-out : "test" >> "test"
+out : "\n\t\"joe\"\n"

@@ -36,4 +36,8 @@ namespace error {
     std::string mathError(std::string math) {
         return "Error while resolving equasion: \'" + math + "\'";
     }
+
+    std::string escapeError(char ch) {
+        return "\'" + std::to_string(ch) + "\' is not a valid excape character";
+    }
 }

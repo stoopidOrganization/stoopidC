@@ -46,6 +46,32 @@ bool validateString(std::string str) {
     return true;
 }
 
+std::string replaceEscapeChar(std::string str) {
+    str = utils::trim(str, ' ');
+
+    std::string output = "";
+
+    for (size_t i = 0; i < str.size(); i++) {
+        if (str[i] == '\\') {
+            if (str[i + 1] == '\"') {
+                output += '\"';
+            } else if (str[i + 1] == 'n') {
+                output += '\n';
+            } else if (str[i + 1] == 't') {
+                output += '\t';
+            } else {
+                throw error::escapeError(str[i + 1]);
+            }
+
+            i++;
+        } else {
+            output += str[i];
+        }
+    }
+
+    return output;
+}
+
 std::string makeStpdString(std::string input) {
     std::vector<std::string> splitUp = utils::splitString(input, '+');
     std::vector<std::string> trimStr;
@@ -54,7 +80,7 @@ std::string makeStpdString(std::string input) {
     for (size_t i = 0; i < splitUp.size(); i++) {
         if (!validateString(splitUp[i])) throw error::stringError(splitUp[i]);
 
-        trimStr.push_back(utils::trim(splitUp[i], ' '));
+        trimStr.push_back(replaceEscapeChar(utils::trim(splitUp[i], ' ')));
     }
 
     for (size_t i = 0; i < trimStr.size(); i++) {
