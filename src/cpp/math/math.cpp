@@ -2,6 +2,7 @@
 #include <queue>
 #include <vector>
 #include <stack>
+#include <iostream>
 
 #include "../../c/cMath/cMath.h"
 #include "../variables/variableManager.hpp"
@@ -137,7 +138,7 @@ double solveEquasion(std::string equasion) {
         std::string current = equasionInRPN.front();
         equasionInRPN.pop();
 
-        if (isOperator(current[0])) {
+        if (current.size() == 1 && isOperator(current[0])) {
             std::string num2Str = storage.top();
             double num2 = std::stod(num2Str);
             storage.pop();
