@@ -66,6 +66,9 @@ int main(int argc, char *argv[]) {
             } else if (linepieces[0] == "goto") {
                 // change the next line read by the interpreter
                 line = stoi(linepieces[1]) - 2;
+            } else if (linepieces[0] == "end") {
+                // ends the execution of the script
+                return 0;
             } else if (linepieces[0] == "" || linepieces[0][0] == '#') {
                 // do nothing on empty lines pr comments
                 continue;

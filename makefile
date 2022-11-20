@@ -7,4 +7,4 @@ compile-all:
 	${python} scripts/compile.py all
 
 run:
-	build/stoopid stpd/errorHunting.stpd
+	build/stoopid stpd/test.stpd
