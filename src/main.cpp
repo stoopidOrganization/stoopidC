@@ -2,6 +2,8 @@
 #include <fstream>
 #include <vector>
 #include <string>
+#include <thread>
+#include <chrono>
 
 #include "cpp/utils/utils.hpp"
 #include "cpp/strings/stringHandler.hpp"
@@ -66,6 +68,8 @@ int main(int argc, char *argv[]) {
             } else if (linepieces[0] == "goto") {
                 // change the next line read by the interpreter
                 line = stoi(linepieces[1]) - 2;
+            } else if (linepieces[0] == "sleep") {
+                std::this_thread::sleep_for(std::chrono::milliseconds(stoi(utils::getValue(linepieces[1]))));            
             } else if (linepieces[0] == "end") {
                 // ends the execution of the script
                 return 0;
