@@ -1,6 +1,8 @@
 var : a = 90
+var : deez =
 var : b = 10
 var : c = a + b
+
 
 out : c # added inline comments
 

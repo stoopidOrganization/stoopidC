@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "../utils/utils.hpp"
+#include "../exception/errorMessages.hpp"
 
 std::vector<Variable> variables;
 
@@ -13,8 +14,7 @@ std::vector<Variable> getVariables() {
 int addVariable(Variable var) {
     for (size_t i = 0; i < variables.size(); i++) {
         if (var.name == variables[i].name) {
-            std::string error = "Variable \'" + var.name + "\' already exists!";
-            throw error;
+            throw error::variableAlreadyExists(var.name);
             return 1;
         }
     }
@@ -69,15 +69,13 @@ std::vector<std::string> getVarPieces(std::string input) {
     }
 
     if (!found) {
-        std::string error = "No declaration for variable!";
-        throw error;
+        throw error::noVarDeclaration();
     }
 
     name = trim(name, ' ');
 
     if (name.size() == 0) {
-        std::string error = "No name for variable!";
-        throw error;
+        throw error::noVarName();
     }
 
     output.push_back(name);

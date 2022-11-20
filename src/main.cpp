@@ -8,6 +8,7 @@
 #include "cpp/bools/boolManager.hpp"
 #include "cpp/comment/comment.hpp"
 #include "cpp/exception/exceptionHandler.hpp"
+#include "cpp/exception/errorMessages.hpp"
 
 size_t line = 0;
 
@@ -77,8 +78,8 @@ int main(int argc, char *argv[]) {
                     } else {
                         throw 69;
                     }
-                } catch (int varErr) {
-                    throw "Invalid Keyword: \'" + linepieces[0] + "\'";
+                } catch (std::string varErr) {
+                    throw error::keywordNotFound(linepieces[0]);
                     return 1;
                 }
             }
