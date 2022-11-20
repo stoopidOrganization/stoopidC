@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
-#include "variable.hpp"
+#include <iostream>
+
+#include "../utils/utils.hpp"
 
 std::vector<Variable> variables;
 
@@ -67,7 +69,15 @@ std::vector<std::string> getVarPieces(std::string input) {
     }
 
     if (!found) {
-        throw 69;
+        std::string error = "No declaration for variable!";
+        throw error;
+    }
+
+    name = trim(name, ' ');
+
+    if (name.size() == 0) {
+        std::string error = "No name for variable!";
+        throw error;
     }
 
     output.push_back(name);
