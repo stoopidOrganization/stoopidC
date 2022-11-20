@@ -78,7 +78,7 @@ int main(int argc, char *argv[]) {
                         throw 69;
                     }
                 } catch (int varErr) {
-                    throw "Invalid Keyword: " + linepieces[0];
+                    throw "Invalid Keyword: \'" + linepieces[0] + "\'";
                     return 1;
                 }
             }

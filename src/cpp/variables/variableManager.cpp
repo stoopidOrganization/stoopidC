@@ -11,7 +11,8 @@ std::vector<Variable> getVariables() {
 int addVariable(Variable var) {
     for (size_t i = 0; i < variables.size(); i++) {
         if (var.name == variables[i].name) {
-            throw 69;
+            std::string error = "Variable \'" + var.name + "\' already exists!";
+            throw error;
             return 1;
         }
     }
