@@ -86,7 +86,7 @@ std::vector<std::string> getVarPieces(std::string input) {
 
 int setVariable(std::string name, std::string value) {
     if (!isVariable(name)) {
-        throw 69;
+        throw error::variableNotFound(name);
         return 1;
     }
 
