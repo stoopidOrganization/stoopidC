@@ -28,10 +28,10 @@ std::string removeQuotation(std::string input) {
 }
 
 bool validateString(std::string str) {
-    for (size_t i = 0; i < str.size(); i++) {
-        if (i > 0) {
+    str = utils::trim(str, ' ');
+    str = removeQuotation(str);
 
-        }
+    for (size_t i = 0; i < str.size(); i++) {
         if (str[i] == '\"') {
             if (i > 0) {
                 if (str[i - 1] != '\\') {
