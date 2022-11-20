@@ -1,1 +1,1 @@
-out : "test: " + true
+out : "test" == "test"

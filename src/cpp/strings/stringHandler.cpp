@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <iostream>
 
 #include "../utils/utils.hpp"
 #include "../exception/errorMessages.hpp"
@@ -26,12 +27,33 @@ std::string removeQuotation(std::string input) {
     return output;
 }
 
+bool validateString(std::string str) {
+    for (size_t i = 0; i < str.size(); i++) {
+        if (i > 0) {
+
+        }
+        if (str[i] == '\"') {
+            if (i > 0) {
+                if (str[i - 1] != '\\') {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+
+    return true;
+}
+
 std::string makeStpdString(std::string input) {
     std::vector<std::string> splitUp = utils::splitString(input, '+');
     std::vector<std::string> trimStr;
     std::string output = "\"";
 
     for (size_t i = 0; i < splitUp.size(); i++) {
+        if (!validateString(splitUp[i])) throw error::stringError(splitUp[i]);
+
         trimStr.push_back(utils::trim(splitUp[i], ' '));
     }
 
