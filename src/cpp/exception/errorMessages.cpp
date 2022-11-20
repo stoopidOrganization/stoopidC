@@ -16,4 +16,12 @@ namespace error {
     std::string noVarName() {
         return "No name for variable!";
     }
+
+    std::string invalidValue(std::string value) {
+        return "Invalid value: \'" + value + "\'";
+    }
+
+    std::string booleanError(std::string boolean) {
+        return "Error while resolving boolean: " + boolean;
+    }
 }

@@ -7,6 +7,7 @@
 #include "../strings/stringHandler.hpp"
 #include "../bools/boolManager.hpp"
 #include "../../c/cBools/cBools.h"
+#include "../exception/errorMessages.hpp"
 
 std::string removeFirstCharInString(std::string input) {
     std::string output = "";
@@ -123,8 +124,8 @@ std::string getValue(std::string input) {
         } catch (int strErr) {
             try {
                 return solveBool(trimmedInput);
-            } catch (int boolErr) {
-                throw 69;
+            } catch (std::string boolErr) {
+                throw error::invalidValue(trimmedInput);
             }
         }
     }
