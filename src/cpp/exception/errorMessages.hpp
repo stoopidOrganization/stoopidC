@@ -10,4 +10,5 @@ namespace error {
     std::string invalidValue(std::string value);
     std::string booleanError(std::string boolean);
     std::string stringError(std::string str);
+    std::string mathError(std::string math);
 }

@@ -118,7 +118,7 @@ std::string getValue(std::string input) {
     
     try {
         return std::to_string(solveEquasion(removeChar(input, ' ')));
-    } catch (int mathErr) {
+    } catch (std::string mathErr) {
         try {
             return makeStpdString(input);
         } catch (std::string strErr) {

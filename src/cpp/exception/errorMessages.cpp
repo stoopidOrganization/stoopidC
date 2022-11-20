@@ -32,4 +32,8 @@ namespace error {
     std::string stringError(std::string str) {
         return "Error while resolving string: \'" + str + "\'";
     }
+
+    std::string mathError(std::string math) {
+        return "Error while resolving equasion: \'" + math + "\'";
+    }
 }
