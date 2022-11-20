@@ -78,7 +78,6 @@ int main(int argc, char *argv[]) {
                     throw error::keywordNotFound(linepieces[0]);
                     return 1;
                 }
-
                 
                 if (isVariable(varPieces[0])) {
                     setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
