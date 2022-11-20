@@ -70,17 +70,20 @@ int main(int argc, char *argv[]) {
                 // do nothing on empty lines pr comments
                 continue;
             } else {
-                try {
-                    std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 0));
+                std::vector<std::string> varPieces;
 
-                    if (isVariable(varPieces[0])) {
-                        setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
-                    } else {
-                        throw 69;
-                    }
+                try {
+                    varPieces = getVarPieces(combineArgs(linepieces, 0));
                 } catch (std::string varErr) {
                     throw error::keywordNotFound(linepieces[0]);
                     return 1;
+                }
+
+                
+                if (isVariable(varPieces[0])) {
+                    setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
+                } else {
+                    throw error::variableNotFound(varPieces[0]);
                 }
             }
         } catch (std::string error) {

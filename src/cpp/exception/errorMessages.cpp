@@ -24,4 +24,8 @@ namespace error {
     std::string booleanError(std::string boolean) {
         return "Error while resolving boolean: " + boolean;
     }
+
+    std::string variableNotFound(std::string name) {
+        return "Variable \'" + name + "\' doesn't exists!";
+    }
 }
