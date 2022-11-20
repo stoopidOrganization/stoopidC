@@ -69,7 +69,7 @@ int main(int argc, char *argv[]) {
                 // change the next line read by the interpreter
                 line = stoi(linepieces[1]) - 2;
             } else if (linepieces[0] == "sleep") {
-                std::string arg = utils::getValue(linepieces[1]);
+                std::string arg = utils::getValue(utils::combineArgs(linepieces, 1));
                 if (!isNumber(arg)) throw error::invalidValue(arg);
                 int argnum = stoi(arg);
                 if (argnum < 1) throw error::invalidValue(arg);
