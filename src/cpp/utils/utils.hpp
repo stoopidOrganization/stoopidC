@@ -4,14 +4,16 @@
 #include "../math/math.hpp"
 #include "../variables/variableManager.hpp"
 
-const char* removeFirstCharInString(const char* input);
+namespace utils {
+    const char* removeFirstCharInString(const char* input);
 
-std::string combineArgs(std::vector<std::string> input , size_t start);
+    std::string combineArgs(std::vector<std::string> input , size_t start);
 
-std::string removeChar(std::string input, char remove);
+    std::string removeChar(std::string input, char remove);
 
-std::vector<std::string> splitString(std::string input, char splitter);
+    std::vector<std::string> splitString(std::string input, char splitter);
 
-std::string getValue(std::string input);
+    std::string getValue(std::string input);
 
-std::string trim(std::string input, char trimmer);
+    std::string trim(std::string input, char trimmer);
+}
