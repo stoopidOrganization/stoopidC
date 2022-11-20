@@ -34,6 +34,8 @@ NOTE: mingw comes with make, its just named mingw32-make, so if you are using mi
 | var | Defines a variable | `var : <name> = <value>` |
 | out | Prints something to the output | `out : <value>` |
 | goto | Sets the next line to be read by the Interpreter | `goto : <linenumber>` |
+| sleep | Pauses the execution | `sleep : <ms>`
+| end | Ends the programm | `end` |
 
 ### String
 
