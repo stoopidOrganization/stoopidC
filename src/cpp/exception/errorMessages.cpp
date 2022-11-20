@@ -28,4 +28,8 @@ namespace error {
     std::string variableNotFound(std::string name) {
         return "Variable \'" + name + "\' doesn't exists!";
     }
+
+    std::string stringError(std::string str) {
+        return "Error while resolving string: \'" + str + "\'";
+    }
 }

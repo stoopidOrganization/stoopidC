@@ -121,7 +121,7 @@ std::string getValue(std::string input) {
     } catch (int mathErr) {
         try {
             return makeStpdString(input);
-        } catch (int strErr) {
+        } catch (std::string strErr) {
             try {
                 return solveBool(trimmedInput);
             } catch (std::string boolErr) {

@@ -9,4 +9,5 @@ namespace error {
     std::string keywordNotFound(std::string keyword);
     std::string invalidValue(std::string value);
     std::string booleanError(std::string boolean);
+    std::string stringError(std::string str);
 }

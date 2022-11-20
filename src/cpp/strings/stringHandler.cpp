@@ -2,6 +2,7 @@
 #include <vector>
 
 #include "../utils/utils.hpp"
+#include "../exception/errorMessages.hpp"
 
 bool isString(std::string str) {
     if (str[0] == '\"' && str[str.size() - 1] == '\"') return 1;
@@ -40,7 +41,7 @@ std::string makeStpdString(std::string input) {
         } else if (isVariable(trimStr[i])) {
             output += removeQuotation(getVariable(trimStr[i]).value);
         } else {
-            throw 69;
+            throw error::stringError(trimStr[i]);
         }
     }
     
