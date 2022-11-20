@@ -1,11 +1,11 @@
 #include <string>
 #include <queue>
 #include <vector>
-#include <iostream>
 #include <stack>
 
 #include "../../c/cMath/cMath.h"
 #include "../variables/variableManager.hpp"
+#include "../exception/errorMessages.hpp"
 
 int isNumber(std::string num) {
     for (size_t i = 0; i < num.size(); i++) {
@@ -42,7 +42,7 @@ std::vector<std::string> splitEquasion(std::string equasion) {
                     equasionAsList.push_back(cache);
                     cache = "";
                 } else {
-                    throw 69;
+                    throw error::mathError(cache);
                 }
             }
 
@@ -68,7 +68,7 @@ std::vector<std::string> splitEquasion(std::string equasion) {
         equasionAsList.push_back(cache);
         cache = "";
     } else {
-        throw 69;
+        throw error::mathError(cache);
     }
 
     return equasionAsList;

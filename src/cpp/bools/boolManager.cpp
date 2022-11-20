@@ -1,11 +1,11 @@
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "../utils/utils.hpp"
 #include "../math/math.hpp" 
 #include "../strings/stringHandler.hpp"
 #include "../../c/cBools/cBools.h"
+#include "../exception/errorMessages.hpp"
 
 std::vector<std::string> splitBool(std::string input) {
     std::vector<std::string> output;
@@ -15,42 +15,42 @@ std::vector<std::string> splitBool(std::string input) {
         char current = input[i];
 
         if (current == '<' && input[i + 1] == '<' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("<<");
         } else if (current == '>' && input[i + 1] == '>' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back(">>");
         } else if (current == '<' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("<=");
         } else if (current == '>' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back(">=");
         } else if (current == '=' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("==");
         } else if (current == '!' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("!=");
         } else if (current == '&' && input[i + 1] == '&' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("&&");
         } else if (current == '|' && input[i + 1] == '|' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("||");
@@ -59,7 +59,11 @@ std::vector<std::string> splitBool(std::string input) {
         }
     }
 
-    output.push_back(getValue(cache));
+    if (output.size() == 0) {
+        throw error::booleanError(cache);
+    }
+
+    output.push_back(utils::getValue(cache));
     
     return output;
 }
@@ -84,7 +88,7 @@ std::string solveBool(std::string input) {
 
                 resolved.push_back(std::to_string(solveStringBool(str1.c_str(), current.c_str(), str2.c_str())));
             } else {
-                throw 69;
+                throw error::booleanError(current);
             }
         } else if (isCombiner(current.c_str())) {
             resolved.push_back(current);
@@ -107,7 +111,7 @@ std::string solveBool(std::string input) {
 
             i++;
         } else {
-            throw 69;
+            throw error::booleanError(resolved[i]);
         }
     }
 
@@ -116,7 +120,7 @@ std::string solveBool(std::string input) {
     } else if (cache[0] == 1) {
         result = "true";
     } else {
-        throw 69;
+        throw error::booleanError(std::to_string(cache[0]));
     }
     
     return result;

@@ -6,6 +6,19 @@
 #include "cpp/utils/utils.hpp"
 #include "cpp/strings/stringHandler.hpp"
 #include "cpp/bools/boolManager.hpp"
+#include "cpp/comment/comment.hpp"
+#include "cpp/exception/exceptionHandler.hpp"
+#include "cpp/exception/errorMessages.hpp"
+
+size_t line = 0;
+
+size_t getCurrentLine() {
+    return line;
+}
+
+void setCurrentLine(size_t number) {
+    line = number;
+}
 
 int main(int argc, char *argv[]) {
     std::vector<std::string> lines;
@@ -33,41 +46,48 @@ int main(int argc, char *argv[]) {
     }
 
     // output file
-    for (size_t i = 0; i < lines.size(); i++) {
-        std::vector<std::string> linepieces = splitString(lines[i], ':');
-        linepieces[0] = removeChar(linepieces[0], ' ');
+    for (line = 0; line < lines.size(); line++) {
+        try {
+            std::vector<std::string> linepieces = utils::splitString(removeComment(lines[line]), ':');
+            linepieces[0] = utils::removeChar(linepieces[0], ' ');
 
-        if (linepieces[0] == "var") {
-            // initialize a new variable
-            std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 1));
+            if (linepieces[0] == "var") {
+                // initialize a new variable
+                std::vector<std::string> varPieces = getVarPieces(utils::combineArgs(linepieces, 1));
 
-            Variable newVar;
-            newVar.name = removeChar(varPieces[0], ' ');
-            newVar.value = getValue(trim(varPieces[1], ' '));
+                Variable newVar;
+                newVar.name = utils::removeChar(varPieces[0], ' ');
+                newVar.value = utils::getValue(utils::trim(varPieces[1], ' '));
 
-            addVariable(newVar);
-        } else if (linepieces[0] == "out") {
-            // print something to the output
-            std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
-        } else if (linepieces[0] == "goto") {
-            // change the next line read by the interpreter
-            i = stoi(linepieces[1]) - 2;
-        } else if (linepieces[0] == "" || linepieces[0][0] == '#') {
-            // do nothing on empty lines pr comments
-            continue;
-        } else {
-            try {
-                std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 0));
+                addVariable(newVar);
+            } else if (linepieces[0] == "out") {
+                // print something to the output
+                std::cout << removeQuotation(utils::getValue(utils::combineArgs(linepieces, 1))) << std::endl;
+            } else if (linepieces[0] == "goto") {
+                // change the next line read by the interpreter
+                line = stoi(linepieces[1]) - 2;
+            } else if (linepieces[0] == "" || linepieces[0][0] == '#') {
+                // do nothing on empty lines pr comments
+                continue;
+            } else {
+                std::vector<std::string> varPieces;
 
-                if (isVariable(varPieces[0])) {
-                    setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
-                } else {
-                    throw 69;
+                try {
+                    varPieces = getVarPieces(utils::combineArgs(linepieces, 0));
+                } catch (std::string varErr) {
+                    throw error::keywordNotFound(linepieces[0]);
+                    return 1;
                 }
-            } catch (int varErr) {
-                std::cerr << "Invalid Keyword: " + linepieces[0] << std::endl;
-                return 1;
+                
+                if (isVariable(varPieces[0])) {
+                    setVariable(varPieces[0], utils::getValue(utils::trim(varPieces[1], ' ')));
+                } else {
+                    throw error::variableNotFound(varPieces[0]);
+                }
             }
+        } catch (std::string error) {
+            throwException(error);
+            return 1;
         }
     }
 

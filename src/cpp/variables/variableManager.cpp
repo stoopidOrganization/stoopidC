@@ -1,6 +1,8 @@
 #include <vector>
 #include <string>
-#include "variable.hpp"
+
+#include "../utils/utils.hpp"
+#include "../exception/errorMessages.hpp"
 
 std::vector<Variable> variables;
 
@@ -11,7 +13,7 @@ std::vector<Variable> getVariables() {
 int addVariable(Variable var) {
     for (size_t i = 0; i < variables.size(); i++) {
         if (var.name == variables[i].name) {
-            throw 69;
+            throw error::variableAlreadyExists(var.name);
             return 1;
         }
     }
@@ -65,8 +67,14 @@ std::vector<std::string> getVarPieces(std::string input) {
         }
     }
 
-    if (!found) {
-        throw 69;
+    if (!found || value.size() == 0) {
+        throw error::noVarDeclaration();
+    }
+
+    name = utils::trim(name, ' ');
+
+    if (name.size() == 0) {
+        throw error::noVarName();
     }
 
     output.push_back(name);
@@ -77,7 +85,7 @@ std::vector<std::string> getVarPieces(std::string input) {
 
 int setVariable(std::string name, std::string value) {
     if (!isVariable(name)) {
-        throw 69;
+        throw error::variableNotFound(name);
         return 1;
     }
 
