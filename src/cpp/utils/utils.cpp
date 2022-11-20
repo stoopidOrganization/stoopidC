@@ -1,6 +1,5 @@
 #include <string>
 #include <vector>
-#include <iostream>
 
 #include "../variables/variableManager.hpp"
 #include "../math/math.hpp"
