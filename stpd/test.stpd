@@ -15,5 +15,3 @@ out : "bool Test: " + boolTest
 out : !boolTest && c == 100
 
 # cool comment
-
-hi : ho

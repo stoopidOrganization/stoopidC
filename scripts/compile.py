@@ -85,7 +85,7 @@ else:
             
 # save file hash in file
 with open(os.path.join("bin", "hashlist.json"), 'w') as f:
-    f.write(json.dumps(hashlist))
+    f.write(json.dumps(hashlist, indent=4))
     
 if not os.path.isdir(os.path.join("build")):
     os.mkdir("build")
