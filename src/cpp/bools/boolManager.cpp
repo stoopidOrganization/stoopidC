@@ -16,42 +16,42 @@ std::vector<std::string> splitBool(std::string input) {
         char current = input[i];
 
         if (current == '<' && input[i + 1] == '<' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("<<");
         } else if (current == '>' && input[i + 1] == '>' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back(">>");
         } else if (current == '<' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("<=");
         } else if (current == '>' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back(">=");
         } else if (current == '=' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("==");
         } else if (current == '!' && input[i + 1] == '=' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("!=");
         } else if (current == '&' && input[i + 1] == '&' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("&&");
         } else if (current == '|' && input[i + 1] == '|' && cache != "") {
-            output.push_back(getValue(cache));
+            output.push_back(utils::getValue(cache));
             cache = "";
             i++;
             output.push_back("||");
@@ -64,7 +64,7 @@ std::vector<std::string> splitBool(std::string input) {
         throw error::booleanError(cache);
     }
 
-    output.push_back(getValue(cache));
+    output.push_back(utils::getValue(cache));
     
     return output;
 }

@@ -15,5 +15,5 @@ std::string removeComment(std::string input) {
         }
     }
 
-    return trim(output, ' ');
+    return utils::trim(output, ' ');
 }

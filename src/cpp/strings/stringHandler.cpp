@@ -27,12 +27,12 @@ std::string removeQuotation(std::string input) {
 }
 
 std::string makeStpdString(std::string input) {
-    std::vector<std::string> splitUp = splitString(input, '+');
+    std::vector<std::string> splitUp = utils::splitString(input, '+');
     std::vector<std::string> trimStr;
     std::string output = "\"";
 
     for (size_t i = 0; i < splitUp.size(); i++) {
-        trimStr.push_back(trim(splitUp[i], ' '));
+        trimStr.push_back(utils::trim(splitUp[i], ' '));
     }
 
     for (size_t i = 0; i < trimStr.size(); i++) {

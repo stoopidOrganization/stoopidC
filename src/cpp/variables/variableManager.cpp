@@ -72,7 +72,7 @@ std::vector<std::string> getVarPieces(std::string input) {
         throw error::noVarDeclaration();
     }
 
-    name = trim(name, ' ');
+    name = utils::trim(name, ' ');
 
     if (name.size() == 0) {
         throw error::noVarName();

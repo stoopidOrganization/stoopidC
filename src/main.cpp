@@ -48,21 +48,21 @@ int main(int argc, char *argv[]) {
     // output file
     for (line = 0; line < lines.size(); line++) {
         try {
-            std::vector<std::string> linepieces = splitString(removeComment(lines[line]), ':');
-            linepieces[0] = removeChar(linepieces[0], ' ');
+            std::vector<std::string> linepieces = utils::splitString(removeComment(lines[line]), ':');
+            linepieces[0] = utils::removeChar(linepieces[0], ' ');
 
             if (linepieces[0] == "var") {
                 // initialize a new variable
-                std::vector<std::string> varPieces = getVarPieces(combineArgs(linepieces, 1));
+                std::vector<std::string> varPieces = getVarPieces(utils::combineArgs(linepieces, 1));
 
                 Variable newVar;
-                newVar.name = removeChar(varPieces[0], ' ');
-                newVar.value = getValue(trim(varPieces[1], ' '));
+                newVar.name = utils::removeChar(varPieces[0], ' ');
+                newVar.value = utils::getValue(utils::trim(varPieces[1], ' '));
 
                 addVariable(newVar);
             } else if (linepieces[0] == "out") {
                 // print something to the output
-                std::cout << removeQuotation(getValue(combineArgs(linepieces, 1))) << std::endl;
+                std::cout << removeQuotation(utils::getValue(utils::combineArgs(linepieces, 1))) << std::endl;
             } else if (linepieces[0] == "goto") {
                 // change the next line read by the interpreter
                 line = stoi(linepieces[1]) - 2;
@@ -73,14 +73,14 @@ int main(int argc, char *argv[]) {
                 std::vector<std::string> varPieces;
 
                 try {
-                    varPieces = getVarPieces(combineArgs(linepieces, 0));
+                    varPieces = getVarPieces(utils::combineArgs(linepieces, 0));
                 } catch (std::string varErr) {
                     throw error::keywordNotFound(linepieces[0]);
                     return 1;
                 }
                 
                 if (isVariable(varPieces[0])) {
-                    setVariable(varPieces[0], getValue(trim(varPieces[1], ' ')));
+                    setVariable(varPieces[0], utils::getValue(utils::trim(varPieces[1], ' ')));
                 } else {
                     throw error::variableNotFound(varPieces[0]);
                 }
